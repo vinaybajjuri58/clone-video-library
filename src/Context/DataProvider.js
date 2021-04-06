@@ -6,6 +6,7 @@ export const DataProvider = ({ children }) => {
     videos: [],
     categories: [],
     playlists: [],
+    notes: [],
   });
   return (
     <DataContext.Provider value={(state, dispatch)}>
