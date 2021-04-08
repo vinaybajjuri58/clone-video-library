@@ -1,15 +1,17 @@
 import { useContext, useReducer } from "react";
 import { DataContext } from "./DataContext";
 import { ReducerFunction } from "./ReducerFunction";
+import { data } from "./Data";
 export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ReducerFunction, {
-    videos: [],
+    videos: data,
     categories: [],
     playlists: [],
-    notes: [],
+    liked: [],
+    history: [],
   });
   return (
-    <DataContext.Provider value={(state, dispatch)}>
+    <DataContext.Provider value={{ state, dispatch }}>
       {children}
     </DataContext.Provider>
   );
