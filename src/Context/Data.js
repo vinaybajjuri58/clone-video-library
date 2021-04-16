@@ -1,7 +1,7 @@
 export const data = [
   // {
   //   id: "BTOHpoC-XsE",
-  //   name: "Things I wish I new in my 20's",
+  //   description: "Things I wish I new in my 20's",
   //   uploadedBy: "Honestly by Tanmay Bhat",
   //   avatarSrc:
   //     "https://yt3.ggpht.com/ytc/AAUvwnjhWBsemL-_0qiUL8CBztox-E6ZmYcVYW-ZxEPQ=s88-c-k-c0x00ffffff-no-rj",
@@ -10,7 +10,7 @@ export const data = [
   // },
   {
     id: "n3KNJG3inAk",
-    name: "Why we all are getting poor | Inflation",
+    description: "Why we all are getting poor | Inflation",
     uploadedBy: "Honestly by Tanmay Bhat",
     avatarSrc:
       "https://yt3.ggpht.com/ytc/AAUvwnjhWBsemL-_0qiUL8CBztox-E6ZmYcVYW-ZxEPQ=s88-c-k-c0x00ffffff-no-rj",
@@ -19,7 +19,7 @@ export const data = [
   },
   {
     id: "Q7tjDQVPdgw",
-    name: "Initial steps to make more money | Budgeting",
+    description: "Initial steps to make more money | Budgeting",
     uploadedBy: "Honestly by Tanmay Bhat",
     avatarSrc:
       "https://yt3.ggpht.com/ytc/AAUvwnjhWBsemL-_0qiUL8CBztox-E6ZmYcVYW-ZxEPQ=s88-c-k-c0x00ffffff-no-rj",
@@ -28,7 +28,7 @@ export const data = [
   },
   {
     id: "8egWflM1xok",
-    name: "Simple money management rule",
+    description: "Simple money management rule",
     uploadedBy: "Shashank Udupa",
     avatarSrc:
       "https://yt3.ggpht.com/ytc/AAUvwngcam1qyJtXZSiM5ok78HKog6FVlMBPqd6dM01fGQ=s88-c-k-c0x00ffffff-no-rj",
@@ -37,7 +37,7 @@ export const data = [
   },
   {
     id: "Giti1jydK1A",
-    name: "How to travel Freely in India",
+    description: "How to travel Freely in India",
     uploadedBy: "Shashank Udupa",
     avatarSrc:
       "https://yt3.ggpht.com/ytc/AAUvwngcam1qyJtXZSiM5ok78HKog6FVlMBPqd6dM01fGQ=s88-c-k-c0x00ffffff-no-rj",
@@ -46,7 +46,7 @@ export const data = [
   },
   {
     id: "mvaPJuEUqWI",
-    name: "Personal Finance Rules in 2021",
+    description: "Personal Finance Rules in 2021",
     uploadedBy: "Shashank Udupa",
     avatarSrc:
       "https://yt3.ggpht.com/ytc/AAUvwngcam1qyJtXZSiM5ok78HKog6FVlMBPqd6dM01fGQ=s88-c-k-c0x00ffffff-no-rj",
@@ -55,7 +55,7 @@ export const data = [
   },
   {
     id: "dScIcFAdBmU",
-    name: "Becoming Financially Independent",
+    description: "Becoming Financially Independent",
     uploadedBy: "CA Rachana Phadke Ranade",
     avatarSrc:
       "https://yt3.ggpht.com/ytc/AAUvwnhyQxJ5qyZrz_BA3G3UnYz7H5GCX5PrkGtcyCM6RQ=s88-c-k-c0x00ffffff-no-rj",
@@ -64,7 +64,7 @@ export const data = [
   },
   // {
   //   id: "hPTrtp098vg",
-  //   name: "Buy or Rent house in 2021",
+  //   description: "Buy or Rent house in 2021",
   //   uploadedBy: "CA Rachana Phadke Ranade",
   //   avatarSrc:
   //     "https://yt3.ggpht.com/ytc/AAUvwnhyQxJ5qyZrz_BA3G3UnYz7H5GCX5PrkGtcyCM6RQ=s88-c-k-c0x00ffffff-no-rj",
@@ -73,11 +73,20 @@ export const data = [
   // },
   {
     id: "uPqNNshSA9I",
-    name: "All you need to know about Term Insurance",
+    description: "All you need to know about Term Insurance",
     uploadedBy: "CA Rachana Phadke Ranade",
     avatarSrc:
       "https://yt3.ggpht.com/ytc/AAUvwnhyQxJ5qyZrz_BA3G3UnYz7H5GCX5PrkGtcyCM6RQ=s88-c-k-c0x00ffffff-no-rj",
     imageUrl:
       "https://i.ytimg.com/vi/uPqNNshSA9I/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&amp;rs=AOn4CLDxt1k_lw4pleGAjVV83YOoq1RtJQ",
+  },
+  {
+    id: "Nww0fwF5I3E",
+    description: " Power of Compounding | Arthshaala",
+    uploadedBy: "Tickertape",
+    avatarSrc:
+      "https://yt3.ggpht.com/ytc/AAUvwnhOf622qitYglD93EhVAN2RBavFPqJUylt7ABCMCw=s88-c-k-c0x00ffffff-no-rj",
+    imageUrl:
+      "https://i.ytimg.com/vi/Nww0fwF5I3E/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&amp;rs=AOn4CLBnLlCXAgb7ZiQ4wIaoSXXzh94hOQ",
   },
 ];

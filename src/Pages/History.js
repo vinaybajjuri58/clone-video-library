@@ -7,7 +7,7 @@ export const History = () => {
       <h2>History Page</h2>
       <ul className="video-list">
         {state.history.map((item) => (
-          <Video key={item.id} item={item} />
+          <Video key={item.id} video={item} />
         ))}
       </ul>
     </div>

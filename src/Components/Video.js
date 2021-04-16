@@ -1,18 +1,22 @@
 import { Link } from "react-router-dom";
-export const Video = ({ item }) => {
+export const Video = ({ video }) => {
   return (
-    <div id={item.id} className="card">
-      <Link to={`/video/${item.id}`}>
+    <div id={video.id} className="card">
+      <Link to={`/video/${video.id}`}>
         <img
           style={{ flexGrow: "1" }}
           className="card-img"
-          src={item.imageUrl}
-          alt={item.name}
+          src={video.imageUrl}
+          alt={video.name}
         />
       </Link>
       <div style={{ display: "flex" }}>
-        <img className="avatar-sm" src={item.avatarSrc} alt={item.uploadedBy} />
-        <p>{item.name}</p>
+        <img
+          className="avatar-sm"
+          src={video.avatarSrc}
+          alt={video.uploadedBy}
+        />
+        <p>{video.description}</p>
       </div>
     </div>
   );

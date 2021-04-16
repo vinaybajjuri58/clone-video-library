@@ -15,7 +15,7 @@ export const VideoList = () => {
               });
             }}
           >
-            <Video item={item} />
+            <Video video={item} />
           </div>
         ))}
       </ul>
