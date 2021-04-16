@@ -1,13 +1,13 @@
 export const data = [
-  {
-    id: "BTOHpoC-XsE",
-    name: "Things I wish I new in my 20's",
-    uploadedBy: "Honestly by Tanmay Bhat",
-    avatarSrc:
-      "https://yt3.ggpht.com/ytc/AAUvwnjhWBsemL-_0qiUL8CBztox-E6ZmYcVYW-ZxEPQ=s88-c-k-c0x00ffffff-no-rj",
-    imageUrl:
-      "https://i.ytimg.com/vi/BTOHpoC-XsE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCf75LQlYbk9yMVakwshsjdJzvFog",
-  },
+  // {
+  //   id: "BTOHpoC-XsE",
+  //   name: "Things I wish I new in my 20's",
+  //   uploadedBy: "Honestly by Tanmay Bhat",
+  //   avatarSrc:
+  //     "https://yt3.ggpht.com/ytc/AAUvwnjhWBsemL-_0qiUL8CBztox-E6ZmYcVYW-ZxEPQ=s88-c-k-c0x00ffffff-no-rj",
+  //   imageUrl:
+  //     "https://i.ytimg.com/vi/BTOHpoC-XsE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCf75LQlYbk9yMVakwshsjdJzvFog",
+  // },
   {
     id: "n3KNJG3inAk",
     name: "Why we all are getting poor | Inflation",
@@ -62,6 +62,15 @@ export const data = [
     imageUrl:
       "https://i.ytimg.com/vi/dScIcFAdBmU/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&amp;rs=AOn4CLBTeG6LzVREDz8CzKNIUGI8WiBEjA",
   },
+  // {
+  //   id: "hPTrtp098vg",
+  //   name: "Buy or Rent house in 2021",
+  //   uploadedBy: "CA Rachana Phadke Ranade",
+  //   avatarSrc:
+  //     "https://yt3.ggpht.com/ytc/AAUvwnhyQxJ5qyZrz_BA3G3UnYz7H5GCX5PrkGtcyCM6RQ=s88-c-k-c0x00ffffff-no-rj",
+  //   imageUrl:
+  //     "https://i.ytimg.com/vi/hPTrtp098vg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&amp;rs=AOn4CLB3D5WhrDyJrpVJhmPpkacs3SbruA",
+  // },
   {
     id: "uPqNNshSA9I",
     name: "All you need to know about Term Insurance",
@@ -70,14 +79,5 @@ export const data = [
       "https://yt3.ggpht.com/ytc/AAUvwnhyQxJ5qyZrz_BA3G3UnYz7H5GCX5PrkGtcyCM6RQ=s88-c-k-c0x00ffffff-no-rj",
     imageUrl:
       "https://i.ytimg.com/vi/uPqNNshSA9I/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&amp;rs=AOn4CLDxt1k_lw4pleGAjVV83YOoq1RtJQ",
-  },
-  {
-    id: "hPTrtp098vg",
-    name: "Buy or Rent house in 2021",
-    uploadedBy: "CA Rachana Phadke Ranade",
-    avatarSrc:
-      "https://yt3.ggpht.com/ytc/AAUvwnhyQxJ5qyZrz_BA3G3UnYz7H5GCX5PrkGtcyCM6RQ=s88-c-k-c0x00ffffff-no-rj",
-    imageUrl:
-      "https://i.ytimg.com/vi/hPTrtp098vg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&amp;rs=AOn4CLB3D5WhrDyJrpVJhmPpkacs3SbruA",
   },
 ];

@@ -1,24 +1,24 @@
-import { useData } from "../Context";
-import { Link } from "react-router-dom";
+import { useData, ActionTypes } from "../Context";
+import { Video } from "../Components";
 export const VideoList = () => {
-  const { state } = useData();
+  const { state, dispatch } = useData();
   return (
     <div>
-      <h2>List of All Videos</h2>
-      {state.videos.map((item) => {
-        return (
-          <div id={item.id}>
-            <Link to={`/video/${item.id}`}>
-              <img
-                width="30%"
-                height="30%"
-                src={item.imageUrl}
-                alt={item.name}
-              />
-            </Link>
+      <ul className="video-list">
+        {state.videos.map((item) => (
+          <div
+            key={item.id}
+            onClick={() => {
+              dispatch({
+                type: ActionTypes.ADD_TO_HISTORY,
+                payload: item,
+              });
+            }}
+          >
+            <Video item={item} />
           </div>
-        );
-      })}
+        ))}
+      </ul>
     </div>
   );
 };
