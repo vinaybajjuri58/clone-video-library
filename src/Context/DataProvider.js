@@ -6,7 +6,12 @@ export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ReducerFunction, {
     videos: data,
     categories: [],
-    playlists: [],
+    playlists: [
+      {
+        name: "Watch Later",
+        videos: [],
+      },
+    ],
     liked: [],
     history: [],
   });

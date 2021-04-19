@@ -1,11 +1,11 @@
 import "./App.css";
 import { RoutesComponent } from "./Routes";
-import { Navbar } from "./Components";
+import { Sidebar } from "./Components";
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <Sidebar />
       <RoutesComponent />
     </div>
   );
