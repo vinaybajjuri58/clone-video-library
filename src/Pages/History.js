@@ -1,7 +1,11 @@
 import { ActionTypes, useData } from "../Context";
 import { Video } from "../Components";
+import { useEffect } from "react";
 export const History = () => {
   const { state, dispatch } = useData();
+  useEffect(() => {
+    document.title = "History | Learn Finance";
+  }, []);
   if (state.history.length > 0) {
     return (
       <div>

@@ -1,6 +1,10 @@
 import { useData } from "../Context";
 import { Video } from "../Components";
+import { useEffect } from "react";
 export const Liked = () => {
+  useEffect(() => {
+    document.title = "Liked | Learn Finance";
+  }, []);
   const { state } = useData();
   if (state.liked.length > 0) {
     return (

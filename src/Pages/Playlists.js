@@ -1,5 +1,9 @@
 import { useData } from "../Context";
+import { useEffect } from "react";
 export const Playlists = () => {
+  useEffect(() => {
+    document.title = "Playlists | Learn Finance";
+  }, []);
   return (
     <div>
       <h2>All Playlists</h2>

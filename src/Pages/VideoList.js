@@ -1,7 +1,11 @@
 import { useData, ActionTypes } from "../Context";
 import { Video } from "../Components";
+import { useEffect } from "react";
 export const VideoList = () => {
   const { state, dispatch } = useData();
+  useEffect(() => {
+    document.title = "Home | Learn Finance";
+  }, []);
   return (
     <div>
       <ul className="video-list">

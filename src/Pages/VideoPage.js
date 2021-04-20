@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { VideoList } from "./VideoList";
 import { ActionTypes, useData } from "../Context";
 import { YoutubeVideoDisplay, PlaylistModal } from "../Components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export const Video = () => {
   return (
     <div>
@@ -18,6 +18,9 @@ const VideoDisplay = () => {
   const { state, dispatch } = useData();
   const [displayModal, setDisplayModal] = useState("none");
   const video = state.videos.find((item) => item.id === videoId);
+  useEffect(() => {
+    document.title = video.description;
+  }, [video.description]);
   return (
     <div>
       <YoutubeVideoDisplay youtubeId={videoId} />
