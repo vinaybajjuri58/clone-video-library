@@ -20,9 +20,21 @@ export const ReducerFunction = (state, action) => {
         }),
       };
     case ActionTypes.CREATE_PLAYLIST:
-      break;
+      return {
+        ...state,
+        playlists: [
+          ...state.playlists,
+          { id: state.playlists.length + 1, name: action.payload, videos: [] },
+        ],
+      };
     case ActionTypes.DELETE_PLAYLIST:
-      break;
+      return {
+        ...state,
+        playlists: deletePlaylist({
+          playlists: state.playlists,
+          playlistId: action.payload,
+        }),
+      };
     case ActionTypes.ADD_TO_HISTORY:
       return {
         ...state,
@@ -61,6 +73,9 @@ export const ReducerFunction = (state, action) => {
       return state;
   }
 };
+function deletePlaylist({ playlists, playlistId }) {
+  return playlists.filter((item) => item.id !== playlistId);
+}
 function removeFromPlaylist({ playlists, playlistId, videoId }) {
   const playlist = playlists.find((item) => item.id === playlistId);
   const newPlaylist = {

@@ -56,6 +56,18 @@
   color: white;
   background-color: black;
   border: 2px solid grey;
+  width: 300px;
+}
+
+.display-flex {
+  display: flex;
+  justify-content: space-evenly;
+}
+.playlist-input {
+  color: white;
+  background-color: black;
+  border: none;
+  border-bottom: 2px solid grey;
 }
 
 @media only screen and (max-width: 600px) {
