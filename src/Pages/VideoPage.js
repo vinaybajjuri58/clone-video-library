@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 // import YouTube from "react-youtube";
 import { VideoList } from "./VideoList";
 import { ActionTypes, useData } from "../Context";
-import { YoutubeVideoDisplay } from "../Components";
+import { YoutubeVideoDisplay, PlaylistModal } from "../Components";
 import { useState } from "react";
 export const Video = () => {
   return (
@@ -96,28 +96,3 @@ function inLikedVideos({ id, likedVideos }) {
   }
   return true;
 }
-
-const PlaylistModal = ({ displayState, setDisplayState }) => {
-  return (
-    <div
-      id="modal"
-      style={{
-        display: displayState,
-      }}
-      className="modal"
-    >
-      <div className="modal-content modal-theme">
-        <p>Some text in the Modal..</p>
-        <span className="close-modal">
-          <button
-            id="close-modal"
-            onClick={() => setDisplayState("none")}
-            className="button button-warning modal-toggle"
-          >
-            X
-          </button>
-        </span>
-      </div>
-    </div>
-  );
-};

@@ -2,9 +2,23 @@ import * as ActionTypes from "./ActionTypes";
 export const ReducerFunction = (state, action) => {
   switch (action.type) {
     case ActionTypes.ADD_TO_PLAYLIST:
-      break;
+      return {
+        ...state,
+        playlists: addToPlaylist({
+          playlists: state.playlists,
+          playlistId: action.payload.playlistId,
+          videoId: action.payload.videoId,
+        }),
+      };
     case ActionTypes.REMOVE_FROM_PLAYLIST:
-      break;
+      return {
+        ...state,
+        playlists: removeFromPlaylist({
+          playlists: state.playlists,
+          playlistId: action.payload.playlistId,
+          videoId: action.payload.videoId,
+        }),
+      };
     case ActionTypes.CREATE_PLAYLIST:
       break;
     case ActionTypes.DELETE_PLAYLIST:
@@ -47,6 +61,23 @@ export const ReducerFunction = (state, action) => {
       return state;
   }
 };
+function removeFromPlaylist({ playlists, playlistId, videoId }) {
+  const playlist = playlists.find((item) => item.id === playlistId);
+  const newPlaylist = {
+    ...playlist,
+    videos: playlist.videos.filter((item) => item !== videoId),
+  };
+  return playlists.map((item) => (item.id === playlistId ? newPlaylist : item));
+}
+function addToPlaylist({ playlists, playlistId, videoId }) {
+  const playlist = playlists.find((item) => item.id === playlistId);
+  if (playlist.videos.includes(videoId)) {
+    return playlists;
+  } else {
+    playlist.videos.push(videoId);
+    return playlists.map((item) => (item.id === playlistId ? playlist : item));
+  }
+}
 
 function removeFormHistory({ history, videoId }) {
   return history.filter((item) => item.id !== videoId);

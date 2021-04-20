@@ -8,7 +8,13 @@ export const DataProvider = ({ children }) => {
     categories: [],
     playlists: [
       {
+        id: 123,
         name: "Watch Later",
+        videos: ["8egWflM1xok"],
+      },
+      {
+        id: 124,
+        name: "Wealth creation",
         videos: [],
       },
     ],
