@@ -1,6 +1,7 @@
 :root {
   --background-color: #121212;
   --font-color: whitesmoke;
+  --z-index: 25;
 }
 .App {
   color: var(--font-color);
@@ -79,7 +80,10 @@
 .iframe-container {
   width: 900px;
 }
-
+.snackbar-display {
+  height: 3.5rem;
+  z-index: var(--z-index);
+}
 @media only screen and (max-width: 600px) {
   .sidebar-item-name {
     display: none;

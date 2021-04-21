@@ -8,7 +8,7 @@ export const SnackBar = () => {
     }, 2500);
   }, [snackBarContent, removeSnackBar]);
   return (
-    <div className="snackbar">
+    <div className="snackbar snackbar-display">
       <p>{snackBarContent}</p>
     </div>
   );
