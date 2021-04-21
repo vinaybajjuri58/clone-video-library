@@ -2,7 +2,7 @@ import { ActionTypes, useData } from "../Context";
 import { Video } from "../Components";
 import { useEffect } from "react";
 export const History = () => {
-  const { state, dispatch } = useData();
+  const { state, dispatch, showSnackBar, setSnackBarContent } = useData();
   useEffect(() => {
     document.title = "History | Learn Finance";
   }, []);
@@ -13,6 +13,8 @@ export const History = () => {
         <button
           className="icon-button card-remove button-style"
           onClick={() => {
+            setSnackBarContent(`Cleared History`);
+            showSnackBar();
             dispatch({
               type: ActionTypes.CLEAR_HISTORY,
             });

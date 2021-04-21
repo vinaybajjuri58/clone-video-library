@@ -15,7 +15,7 @@ export const Video = () => {
 
 const VideoDisplay = () => {
   const { videoId } = useParams();
-  const { state, dispatch } = useData();
+  const { state, dispatch, showSnackBar, setSnackBarContent } = useData();
   const [displayModal, setDisplayModal] = useState("none");
   const video = state.videos.find((item) => item.id === videoId);
   useEffect(() => {
@@ -23,7 +23,9 @@ const VideoDisplay = () => {
   }, [video.description]);
   return (
     <div>
-      <YoutubeVideoDisplay youtubeId={videoId} />
+      <div className="iframe-container">
+        <YoutubeVideoDisplay youtubeId={videoId} />
+      </div>
       <PlaylistModal
         displayState={displayModal}
         setDisplayState={setDisplayModal}
@@ -31,7 +33,7 @@ const VideoDisplay = () => {
       <div>
         <div style={{ display: "flex" }}>
           <img
-            className="avatar-sm"
+            className="avatar-sm avatar-padding"
             src={video.avatarSrc}
             alt={video.uploadedBy}
           />
@@ -46,6 +48,8 @@ const VideoDisplay = () => {
             <button
               className="icon-button button-style"
               onClick={() => {
+                setSnackBarContent(`Removed from Liked videos`);
+                showSnackBar();
                 dispatch({
                   type: ActionTypes.REMOVE_FROM_LIKED,
                   payload: video,
@@ -58,6 +62,8 @@ const VideoDisplay = () => {
             <button
               className="icon-button button-style"
               onClick={() => {
+                setSnackBarContent(`Added to Liked Videos`);
+                showSnackBar();
                 dispatch({
                   type: ActionTypes.ADD_TO_LIKED,
                   payload: video,
@@ -71,10 +77,17 @@ const VideoDisplay = () => {
           <button
             className="icon-button button-style"
             onClick={() => {
-              dispatch({
-                type: ActionTypes.REMOVE_FROM_LIKED,
-                payload: video,
-              });
+              if (inLikedVideos({ id: video.id, likedVideos: state.liked })) {
+                setSnackBarContent(`Removed from Liked Videos`);
+                showSnackBar();
+                dispatch({
+                  type: ActionTypes.REMOVE_FROM_LIKED,
+                  payload: video,
+                });
+              } else {
+                setSnackBarContent("Video is not present in liked videos");
+                showSnackBar();
+              }
             }}
           >
             <i class="far fa-thumbs-down"></i>

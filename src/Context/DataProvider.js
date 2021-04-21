@@ -1,4 +1,4 @@
-import { useContext, useReducer } from "react";
+import { useContext, useReducer, useState } from "react";
 import { DataContext } from "./DataContext";
 import { ReducerFunction } from "./ReducerFunction";
 import { data } from "./Data";
@@ -21,8 +21,26 @@ export const DataProvider = ({ children }) => {
     liked: [],
     history: [],
   });
+  const [snackBarContent, setSnackBarContent] = useState("");
+  const [displaySnackBar, setDisplaySnackBar] = useState(false);
+  const removeSnackBar = () => {
+    setDisplaySnackBar(false);
+  };
+  const showSnackBar = () => {
+    setDisplaySnackBar(true);
+  };
   return (
-    <DataContext.Provider value={{ state, dispatch }}>
+    <DataContext.Provider
+      value={{
+        state,
+        dispatch,
+        displaySnackBar,
+        snackBarContent,
+        removeSnackBar,
+        showSnackBar,
+        setSnackBarContent,
+      }}
+    >
       {children}
     </DataContext.Provider>
   );

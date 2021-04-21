@@ -6,15 +6,26 @@ export const ModalContent = () => {
   const {
     state: { playlists },
     dispatch,
+    showSnackBar,
+    setSnackBarContent,
   } = useData();
   const [addPlaylistToggler, setAddPlaylistToggler] = useState(false);
-  const playlistCheckBoxHandler = ({ videoId, playlistVideos, playlistId }) => {
+  const playlistCheckBoxHandler = ({
+    videoId,
+    playlistVideos,
+    playlistId,
+    playlistName,
+  }) => {
     if (checkIfInPlaylist({ videoId, playlistVideos })) {
+      setSnackBarContent(`Video Removed from playlist : ${playlistName}`);
+      showSnackBar();
       dispatch({
         type: ActionTypes.REMOVE_FROM_PLAYLIST,
         payload: { videoId, playlistId },
       });
     } else {
+      setSnackBarContent(`Video Added to playlist : ${playlistName}`);
+      showSnackBar();
       dispatch({
         type: ActionTypes.ADD_TO_PLAYLIST,
         payload: { videoId, playlistId },
@@ -49,6 +60,7 @@ export const ModalContent = () => {
                       videoId: videoId,
                       playlistVideos: playlist.videos,
                       playlistId: playlist.id,
+                      playlistName: playlist.name,
                     })
                   }
                 />
@@ -56,6 +68,8 @@ export const ModalContent = () => {
                 <button
                   className="icon-button button-style"
                   onClick={() => {
+                    setSnackBarContent(`Deleted playlist : ${playlist.name}`);
+                    showSnackBar();
                     dispatch({
                       type: ActionTypes.DELETE_PLAYLIST,
                       payload: playlist.id,
@@ -77,12 +91,14 @@ export const ModalContent = () => {
 };
 
 const AddPlaylistSection = ({ closeHandler }) => {
-  const { dispatch } = useData();
+  const { dispatch, showSnackBar, setSnackBarContent } = useData();
   const [playlistName, setPlaylistName] = useState("");
   const changeHandler = (e) => {
     setPlaylistName(e.target.value);
   };
   const addPlaylistHandler = () => {
+    setSnackBarContent(`Added Playlist : ${playlistName}`);
+    showSnackBar();
     dispatch({
       type: ActionTypes.CREATE_PLAYLIST,
       payload: playlistName,

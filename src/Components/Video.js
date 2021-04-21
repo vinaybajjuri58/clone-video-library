@@ -1,8 +1,10 @@
 import { ActionTypes, useData } from "../Context";
 import { Link } from "react-router-dom";
 export const Video = ({ video, removeFromHistory }) => {
-  const { dispatch } = useData();
+  const { dispatch, showSnackBar, setSnackBarContent } = useData();
   const removeFromHistoryHandler = (id) => {
+    setSnackBarContent(`Video Removed from History`);
+    showSnackBar();
     dispatch({
       type: ActionTypes.REMOVE_FROM_HISTORY,
       payload: id,
@@ -20,7 +22,7 @@ export const Video = ({ video, removeFromHistory }) => {
       </Link>
       <div style={{ display: "flex" }}>
         <img
-          className="avatar-sm"
+          className="avatar-sm avatar-padding"
           src={video.avatarSrc}
           alt={video.uploadedBy}
         />
