@@ -47,7 +47,7 @@ export const ModalContent = () => {
         <ul>
           {playlists.length === 0 && <h2>No playlists Available</h2>}
           {playlists.map((playlist) => (
-            <>
+            <div key={playlist.id}>
               <label className="display-flex">
                 <input
                   type="checkbox"
@@ -55,7 +55,7 @@ export const ModalContent = () => {
                     videoId: videoId,
                     playlistVideos: playlist.videos,
                   })}
-                  onClick={() =>
+                  onChange={() =>
                     playlistCheckBoxHandler({
                       videoId: videoId,
                       playlistVideos: playlist.videos,
@@ -79,7 +79,7 @@ export const ModalContent = () => {
                   <i className="fas fa-trash"></i>
                 </button>
               </label>
-            </>
+            </div>
           ))}
         </ul>
       </div>

@@ -7,7 +7,7 @@ export const YoutubeVideoDisplay = ({ youtubeId }) => {
         src={`https://www.youtube.com/embed/${youtubeId}`}
         frameBorder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
+        allowFullScreen
       />
     </div>
   );

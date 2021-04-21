@@ -1,32 +1,25 @@
 import { useData } from "../Context";
 import { useEffect } from "react";
+import { Playlist } from "../Components";
 export const Playlists = () => {
   useEffect(() => {
     document.title = "Playlists | Learn Finance";
   }, []);
-  return (
-    <div>
-      <h2>All Playlists</h2>
-      <DisplayPlaylists />
-    </div>
-  );
-};
-const DisplayPlaylists = () => {
   const {
     state: { playlists },
   } = useData();
-  const noOfVideosInPlaylists = playlists.reduce((cumulative, playlist) => {
-    return cumulative + playlist.videos.length;
-  }, 0);
-  if (noOfVideosInPlaylists > 0) {
+  if (playlists.length > 0) {
     return (
-      <ul>
-        {playlists.map((playlist) => (
-          <p>{playlist.name}</p>
-        ))}
-      </ul>
+      <div>
+        <h2>All Playlists</h2>
+        <ul className="video-list">
+          {playlists.map((playlist) => (
+            <Playlist key={playlist.id} playlist={playlist} />
+          ))}
+        </ul>
+      </div>
     );
   } else {
-    return <h2>No videos exist in playlist</h2>;
+    return <h2>No playlists exist</h2>;
   }
 };
