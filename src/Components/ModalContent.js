@@ -32,6 +32,14 @@ export const ModalContent = () => {
       });
     }
   };
+  const playlistDeleteHandler = ({ playlist }) => {
+    setSnackBarContent(`Deleted playlist : ${playlist.name}`);
+    showSnackBar();
+    dispatch({
+      type: ActionTypes.DELETE_PLAYLIST,
+      payload: playlist.id,
+    });
+  };
   return (
     <div>
       <div className="display-flex">
@@ -67,14 +75,7 @@ export const ModalContent = () => {
                 <p>{playlist.name}</p>
                 <button
                   className="icon-button button-style"
-                  onClick={() => {
-                    setSnackBarContent(`Deleted playlist : ${playlist.name}`);
-                    showSnackBar();
-                    dispatch({
-                      type: ActionTypes.DELETE_PLAYLIST,
-                      payload: playlist.id,
-                    });
-                  }}
+                  onClick={() => playlistDeleteHandler({ playlist: playlist })}
                 >
                   <i className="fas fa-trash"></i>
                 </button>
