@@ -83,6 +83,7 @@
 .snackbar-display {
   height: 3.5rem;
   z-index: var(--z-index);
+  border: 2px solid var(--font-color);
 }
 .link-unstyled {
   text-decoration: none;
