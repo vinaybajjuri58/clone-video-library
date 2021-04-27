@@ -1,2 +1,2 @@
-export { DataProvider, useData } from "./DataProvider";
-export * as ActionTypes from "./ActionTypes";
+export { DataProvider, useData, ActionTypes } from "./DataContext";
+export { AuthProvider, useAuth, AuthActionTypes } from "./AuthContext";

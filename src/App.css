@@ -8,9 +8,39 @@
   background-color: var(--background-color);
   display: grid;
   grid-template-columns: 10% 90%;
+  grid-template-areas:
+    "navbar navbar"
+    "sidebar .";
 }
+
+/* Navbar styling */
+.navbar {
+  grid-area: navbar;
+  display: flex;
+  height: 3rem;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  z-index: var(--z-index);
+  background-color: var(--background-color);
+  color: var(--font-color);
+}
+.search-container {
+  flex-grow: 1;
+}
+.search-bar {
+  width: 60%;
+  height: 1.5rem;
+  border-radius: 0.25rem;
+}
+.logo {
+  margin: 1rem;
+}
+
 /* Sidebar styling */
 .sidebar {
+  grid-area: sidebar;
   list-style: none;
   font-size: 1.2rem;
   display: flex;
@@ -90,6 +120,9 @@
   color: inherit;
 }
 @media only screen and (max-width: 600px) {
+  .navbar {
+    display: block;
+  }
   .sidebar-item-name {
     display: none;
   }
