@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 // import YouTube from "react-youtube";
 import { VideoList } from "./VideoList";
-import { ActionTypes, useData } from "../Context";
+import { ActionTypes, useData, useAuth } from "../Context";
 import { YoutubeVideoDisplay, PlaylistModal } from "../Components";
 import { useEffect, useState } from "react";
 export const Video = () => {
@@ -16,6 +16,9 @@ export const Video = () => {
 const VideoDisplay = () => {
   const { videoId } = useParams();
   const { state, dispatch, showSnackBar, setSnackBarContent } = useData();
+  const {
+    authState: { isLoggedIn },
+  } = useAuth();
   const [displayModal, setDisplayModal] = useState("none");
   const video = state.videos.find((item) => item.id === videoId);
   useEffect(() => {
@@ -62,12 +65,17 @@ const VideoDisplay = () => {
             <button
               className="icon-button button-style"
               onClick={() => {
-                setSnackBarContent(`Added to Liked Videos`);
-                showSnackBar();
-                dispatch({
-                  type: ActionTypes.ADD_TO_LIKED,
-                  payload: video,
-                });
+                if (isLoggedIn) {
+                  setSnackBarContent(`Added to Liked Videos`);
+                  showSnackBar();
+                  dispatch({
+                    type: ActionTypes.ADD_TO_LIKED,
+                    payload: video,
+                  });
+                } else {
+                  setSnackBarContent("Please Login");
+                  showSnackBar();
+                }
               }}
             >
               <i class="far fa-thumbs-up"> </i>
@@ -77,15 +85,20 @@ const VideoDisplay = () => {
           <button
             className="icon-button button-style"
             onClick={() => {
-              if (inLikedVideos({ id: video.id, likedVideos: state.liked })) {
-                setSnackBarContent(`Removed from Liked Videos`);
-                showSnackBar();
-                dispatch({
-                  type: ActionTypes.REMOVE_FROM_LIKED,
-                  payload: video,
-                });
+              if (isLoggedIn) {
+                if (inLikedVideos({ id: video.id, likedVideos: state.liked })) {
+                  setSnackBarContent(`Removed from Liked Videos`);
+                  showSnackBar();
+                  dispatch({
+                    type: ActionTypes.REMOVE_FROM_LIKED,
+                    payload: video,
+                  });
+                } else {
+                  setSnackBarContent("Video is not present in liked videos");
+                  showSnackBar();
+                }
               } else {
-                setSnackBarContent("Video is not present in liked videos");
+                setSnackBarContent("Please Login");
                 showSnackBar();
               }
             }}
@@ -95,7 +108,12 @@ const VideoDisplay = () => {
           <button
             className="icon-button button-style"
             onClick={() => {
-              setDisplayModal("block");
+              if (isLoggedIn) {
+                setDisplayModal("block");
+              } else {
+                setSnackBarContent("Please Login");
+                showSnackBar();
+              }
             }}
           >
             <i class="fas fa-bars"></i> ADD TO PLAYLIST

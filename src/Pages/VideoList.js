@@ -1,8 +1,11 @@
-import { useData, ActionTypes } from "../Context";
+import { useData, ActionTypes, useAuth } from "../Context";
 import { Video } from "../Components";
 import { useEffect } from "react";
 export const VideoList = () => {
   const { state, dispatch } = useData();
+  const {
+    authState: { isLoggedIn },
+  } = useAuth();
   useEffect(() => {
     document.title = "Home | Learn Finance";
   }, []);
@@ -13,10 +16,12 @@ export const VideoList = () => {
           <div
             key={item.id}
             onClick={() => {
-              dispatch({
-                type: ActionTypes.ADD_TO_HISTORY,
-                payload: item,
-              });
+              if (isLoggedIn) {
+                dispatch({
+                  type: ActionTypes.ADD_TO_HISTORY,
+                  payload: item,
+                });
+              }
             }}
           >
             <Video video={item} />

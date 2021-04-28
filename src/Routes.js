@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { PrivateRoute } from "./PrivateRoute";
 import {
   Liked,
   Playlists,
@@ -12,12 +13,12 @@ import {
 export const RoutesComponent = () => {
   return (
     <Routes>
-      <Route path="/history" element={<History />} />
-      <Route path="/liked" element={<Liked />} />
-      <Route path="/playlists" element={<Playlists />} />
+      <PrivateRoute path="/history" element={<History />} />
+      <PrivateRoute path="/liked" element={<Liked />} />
+      <PrivateRoute path="/playlists" element={<Playlists />} />
       <Route path="/" element={<VideoList />} />
       <Route path="/video/:videoId" element={<Video />} />
-      <Route path="/playlist/:playlistId" element={<PlayListVideos />} />
+      <PrivateRoute path="/playlist/:playlistId" element={<PlayListVideos />} />
       <Route path="/login" element={<Login />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
