@@ -123,6 +123,17 @@
   margin: 1rem;
 }
 
+/* Modifying card style */
+.card-style {
+  border: none;
+  height: 340px;
+  width: 330px;
+}
+/* card image style */
+.card-img-style {
+  height: auto;
+  width: 100%;
+}
 @media only screen and (max-width: 600px) {
   .sidebar-item-name {
     display: none;

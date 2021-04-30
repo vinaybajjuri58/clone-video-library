@@ -11,11 +11,11 @@ export const Video = ({ video, removeFromHistory }) => {
     });
   };
   return (
-    <div id={video.id} className="card">
+    <div id={video.id} className="card card-style">
       <Link to={`/video/${video.id}`}>
         <img
           style={{ flexGrow: "1" }}
-          className="card-img"
+          className="card-img card-img-style"
           src={video.imageUrl}
           alt={video.name}
         />
