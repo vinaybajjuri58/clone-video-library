@@ -7,15 +7,15 @@ export const Sidebar = () => {
           <i class="fas fa-home"></i>
           <p className="sidebar-item-name">Home</p>
         </NavLink>
-        <NavLink className=" sidebar-item" to="/history">
+        <NavLink className="sidebar-item" to="/history">
           <i class="fas fa-history"></i>{" "}
           <p className="sidebar-item-name">History</p>
         </NavLink>
-        <NavLink className=" sidebar-item" to="/liked">
+        <NavLink className="sidebar-item" to="/liked">
           <i class="far fa-thumbs-up"></i>{" "}
           <p className="sidebar-item-name">Liked</p>
         </NavLink>
-        <NavLink className=" sidebar-item" to="/playlists">
+        <NavLink className="sidebar-item" to="/playlists">
           <i class="fas fa-bars"></i>{" "}
           <p className="sidebar-item-name">Playlists</p>
         </NavLink>

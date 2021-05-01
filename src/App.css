@@ -14,15 +14,15 @@
 }
 
 /* Navbar styling */
-.navbar {
-  grid-area: navbar;
+.navbar-content {
   display: flex;
-  height: 3rem;
+  grid-area: navbar;
+  height: 4rem;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   top: 0;
-  /* z-index: var(--z-index); */
+  z-index: var(--z-index);
   background-color: var(--background-color);
   color: var(--font-color);
 }
@@ -134,11 +134,31 @@
   height: auto;
   width: 100%;
 }
+
 @media only screen and (max-width: 600px) {
   .sidebar-item-name {
     display: none;
   }
   .iframe-container {
     width: 100%;
+  }
+  .sidebar {
+    position: fixed;
+    bottom: 0rem;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--background-color);
+    z-index: var(--z-index);
+    width: 100%;
+  }
+  .App {
+    margin-top: 4rem;
+    display: flex;
+    width: 100%;
+  }
+  .navbar-content {
+    position: fixed;
+    top: 0rem;
+    z-index: var(--z-index);
   }
 }

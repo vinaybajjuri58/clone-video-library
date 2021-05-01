@@ -17,7 +17,7 @@ export const Playlist = ({ playlist }) => {
       : noVideosUrl;
   return (
     <Link className="link-unstyled" to={`/playlist/${playlist.id}`}>
-      <div className="card">
+      <div className="card card-style">
         <img src={playlistImage} alt={playlist.name} className="card-img" />
         {playlist.videos.length > 0 && (
           <i

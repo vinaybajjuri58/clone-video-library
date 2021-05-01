@@ -35,11 +35,13 @@ const VideoDisplay = () => {
       />
       <div>
         <div style={{ display: "flex" }}>
-          <img
-            className="avatar-sm avatar-padding"
-            src={video.avatarSrc}
-            alt={video.uploadedBy}
-          />
+          <div className="avatar-container-sm avatar-padding">
+            <img
+              className="avatar avatar-padding"
+              src={video.avatarSrc}
+              alt={video.uploadedBy}
+            />
+          </div>
           <p>{video.description}</p>
         </div>
         <div

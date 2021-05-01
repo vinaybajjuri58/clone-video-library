@@ -21,11 +21,13 @@ export const Video = ({ video, removeFromHistory }) => {
         />
       </Link>
       <div style={{ display: "flex" }}>
-        <img
-          className="avatar-sm avatar-padding"
-          src={video.avatarSrc}
-          alt={video.uploadedBy}
-        />
+        <div className="avatar-container-sm  avatar-padding">
+          <img
+            className="avatar"
+            src={video.avatarSrc}
+            alt={video.uploadedBy}
+          />
+        </div>
         <p>{video.description}</p>
         {removeFromHistory && (
           <button
