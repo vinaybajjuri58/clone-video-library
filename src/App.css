@@ -134,6 +134,26 @@
   height: auto;
   width: 100%;
 }
+/* Login page */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px solid whitesmoke;
+  width: 300px;
+  margin: auto;
+}
+.label-styles {
+  align-self: center;
+  size: 1.2rem;
+}
+.input-field {
+  width: 100%;
+  height: 1.125rem;
+  border: 1px solid whitesmoke;
+  background-color: whitesmoke;
+}
 
 @media only screen and (max-width: 600px) {
   .sidebar-item-name {

@@ -33,10 +33,11 @@ export const Login = () => {
     }
   };
   return authState.isLoggedIn === false ? (
-    <div>
+    <div className="login-container">
       <label>
-        <p>Email :</p>
+        <p className="label-styles">Email :</p>
         <input
+          className="input-field"
           type="text"
           value={loginData["email"]}
           name="email"
@@ -44,8 +45,9 @@ export const Login = () => {
         />
       </label>
       <label>
-        <p>Password :</p>
+        <p className="label-styles">Password :</p>
         <input
+          className="input-field"
           type="password"
           value={loginData["password"]}
           name="password"

@@ -24,6 +24,11 @@ const VideoDisplay = () => {
   useEffect(() => {
     document.title = video.description;
   }, [video.description]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [videoId]);
+
   return (
     <div>
       <div className="iframe-container">
