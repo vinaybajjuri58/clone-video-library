@@ -9,21 +9,19 @@ export const VideoList = () => {
   useEffect(() => {
     document.title = "Home | Learn Finance";
   }, []);
+  const videoClickHandler = (item) => {
+    if (isLoggedIn) {
+      dispatch({
+        type: ActionTypes.ADD_TO_HISTORY,
+        payload: item,
+      });
+    }
+  };
   return (
     <div>
       <ul className="video-list">
         {state.videos.map((item) => (
-          <div
-            key={item.id}
-            onClick={() => {
-              if (isLoggedIn) {
-                dispatch({
-                  type: ActionTypes.ADD_TO_HISTORY,
-                  payload: item,
-                });
-              }
-            }}
-          >
+          <div key={item.id} onClick={() => videoClickHandler(item)}>
             <Video video={item} />
           </div>
         ))}

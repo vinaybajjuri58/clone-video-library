@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useData, useAuth, AuthActionTypes } from "../Context";
 const initialLoginData = {
@@ -11,6 +11,11 @@ export const Login = () => {
   const [loginData, setLoginData] = useState(initialLoginData);
   const { state } = useLocation();
   const navigate = useNavigate();
+  useEffect(() => {
+    if (authState.isLoggedIn) {
+      navigate("/");
+    }
+  }, [authState.isLoggedIn, navigate]);
   const handleChange = (e) => {
     setLoginData((prevState) => ({
       ...prevState,
@@ -32,7 +37,7 @@ export const Login = () => {
       showSnackBar();
     }
   };
-  return authState.isLoggedIn === false ? (
+  return (
     <div className="login-container">
       <label>
         <p className="label-styles">Email :</p>
@@ -67,20 +72,6 @@ export const Login = () => {
         <p>Email : neog@gmail.com</p>
         <p>Password: neog@123</p>
       </div>
-    </div>
-  ) : (
-    <div>
-      <button
-        className="button button-border border-warning"
-        onClick={() => {
-          authDispatch({
-            type: AuthActionTypes.SET_LOGOUT,
-          });
-        }}
-      >
-        {" "}
-        Logout{" "}
-      </button>
     </div>
   );
 };

@@ -6,19 +6,20 @@ export const History = () => {
   useEffect(() => {
     document.title = "History | Learn Finance";
   }, []);
+  const clearHistoryHandler = () => {
+    setSnackBarContent(`Cleared History`);
+    showSnackBar();
+    dispatch({
+      type: ActionTypes.CLEAR_HISTORY,
+    });
+  };
   if (state.history.length > 0) {
     return (
       <div>
         <h2>History Page</h2>
         <button
           className="icon-button card-remove button-style"
-          onClick={() => {
-            setSnackBarContent(`Cleared History`);
-            showSnackBar();
-            dispatch({
-              type: ActionTypes.CLEAR_HISTORY,
-            });
-          }}
+          onClick={clearHistoryHandler}
         >
           <i className="fas fa-trash"></i>CLEAR HISTORY
         </button>

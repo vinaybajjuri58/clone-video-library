@@ -46,7 +46,7 @@ export const ReducerFunction = (state, action) => {
     case ActionTypes.REMOVE_FROM_HISTORY:
       return {
         ...state,
-        history: removeFormHistory({
+        history: removeFromHistory({
           history: state.history,
           videoId: action.payload,
         }),
@@ -94,7 +94,7 @@ function addToPlaylist({ playlists, playlistId, videoId }) {
   }
 }
 
-function removeFormHistory({ history, videoId }) {
+function removeFromHistory({ history, videoId }) {
   return history.filter((item) => item.id !== videoId);
 }
 

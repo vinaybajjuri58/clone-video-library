@@ -29,6 +29,54 @@ const VideoDisplay = () => {
     window.scrollTo(0, 0);
   }, [videoId]);
 
+  const removeFromLikedHandler = () => {
+    setSnackBarContent(`Removed from Liked videos`);
+    showSnackBar();
+    dispatch({
+      type: ActionTypes.REMOVE_FROM_LIKED,
+      payload: video,
+    });
+  };
+  const addToLikedHandler = () => {
+    if (isLoggedIn) {
+      setSnackBarContent(`Added to Liked Videos`);
+      showSnackBar();
+      dispatch({
+        type: ActionTypes.ADD_TO_LIKED,
+        payload: video,
+      });
+    } else {
+      setSnackBarContent("Please Login");
+      showSnackBar();
+    }
+  };
+  const dislikeButtonHandler = () => {
+    if (isLoggedIn) {
+      if (inLikedVideos({ id: video.id, likedVideos: state.liked })) {
+        setSnackBarContent(`Removed from Liked Videos`);
+        showSnackBar();
+        dispatch({
+          type: ActionTypes.REMOVE_FROM_LIKED,
+          payload: video,
+        });
+      } else {
+        setSnackBarContent("Video is not present in liked videos");
+        showSnackBar();
+      }
+    } else {
+      setSnackBarContent("Please Login");
+      showSnackBar();
+    }
+  };
+  const playlistButtonHandler = () => {
+    if (isLoggedIn) {
+      setDisplayModal("block");
+    } else {
+      setSnackBarContent("Please Login");
+      showSnackBar();
+    }
+  };
+
   return (
     <div>
       <div className="iframe-container">
@@ -57,33 +105,14 @@ const VideoDisplay = () => {
           {inLikedVideos({ id: video.id, likedVideos: state.liked }) ? (
             <button
               className="icon-button button-style"
-              onClick={() => {
-                setSnackBarContent(`Removed from Liked videos`);
-                showSnackBar();
-                dispatch({
-                  type: ActionTypes.REMOVE_FROM_LIKED,
-                  payload: video,
-                });
-              }}
+              onClick={removeFromLikedHandler}
             >
               <i class="fas fa-thumbs-up"></i>
             </button>
           ) : (
             <button
               className="icon-button button-style"
-              onClick={() => {
-                if (isLoggedIn) {
-                  setSnackBarContent(`Added to Liked Videos`);
-                  showSnackBar();
-                  dispatch({
-                    type: ActionTypes.ADD_TO_LIKED,
-                    payload: video,
-                  });
-                } else {
-                  setSnackBarContent("Please Login");
-                  showSnackBar();
-                }
-              }}
+              onClick={addToLikedHandler}
             >
               <i class="far fa-thumbs-up"> </i>
             </button>
@@ -91,37 +120,13 @@ const VideoDisplay = () => {
 
           <button
             className="icon-button button-style"
-            onClick={() => {
-              if (isLoggedIn) {
-                if (inLikedVideos({ id: video.id, likedVideos: state.liked })) {
-                  setSnackBarContent(`Removed from Liked Videos`);
-                  showSnackBar();
-                  dispatch({
-                    type: ActionTypes.REMOVE_FROM_LIKED,
-                    payload: video,
-                  });
-                } else {
-                  setSnackBarContent("Video is not present in liked videos");
-                  showSnackBar();
-                }
-              } else {
-                setSnackBarContent("Please Login");
-                showSnackBar();
-              }
-            }}
+            onClick={dislikeButtonHandler}
           >
             <i class="far fa-thumbs-down"></i>
           </button>
           <button
             className="icon-button button-style"
-            onClick={() => {
-              if (isLoggedIn) {
-                setDisplayModal("block");
-              } else {
-                setSnackBarContent("Please Login");
-                showSnackBar();
-              }
-            }}
+            onClick={playlistButtonHandler}
           >
             <i class="fas fa-bars"></i> ADD TO PLAYLIST
           </button>
@@ -130,6 +135,7 @@ const VideoDisplay = () => {
     </div>
   );
 };
+
 function inLikedVideos({ id, likedVideos }) {
   const inliked = likedVideos.find((item) => item.id === id);
   if (inliked === undefined) {
