@@ -24,8 +24,8 @@ export const Login = () => {
   };
   const handleSubmit = () => {
     if (
-      loginData.email === "neog@gmail.com" &&
-      loginData.password === "neog@123"
+      loginData.email === "admin@gmail.com" &&
+      loginData.password === "admin@123"
     ) {
       authDispatch({
         type: AuthActionTypes.SET_LOGGED_IN,
@@ -69,8 +69,8 @@ export const Login = () => {
       </div>
       <div>
         <p>Temporary Login Details</p>
-        <p>Email : neog@gmail.com</p>
-        <p>Password: neog@123</p>
+        <p>Email : admin@gmail.com</p>
+        <p>Password: admin@123</p>
       </div>
     </div>
   );
