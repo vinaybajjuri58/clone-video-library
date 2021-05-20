@@ -1,9 +1,9 @@
 import { useContext, useReducer, useState } from "react";
 import { DataContext } from "./DataContext";
 import { ReducerFunction } from "./ReducerFunction";
-import { data } from "./Data";
+// import { data } from "./Data";
 export const initialState = {
-  videos: data,
+  videos: [],
   categories: [],
   playlists: [
     {

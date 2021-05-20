@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 function App() {
   const [loading, setLoading] = useState(false);
-  const { displaySnackBar, showSnackBar, setSnackBarContent, dispatch } =
-    useData();
+  const { displaySnackBar, dispatch } = useData();
   useEffect(() => {
     (async () => {
       try {
@@ -17,6 +16,7 @@ function App() {
         } = await axios.get(
           `https://learn-finance-backend.herokuapp.com/api/videos`
         );
+        setLoading(false);
         if (success === true) {
           dispatch({
             type: ActionTypes.SET_VIDEOS,
@@ -24,13 +24,11 @@ function App() {
           });
         }
       } catch (err) {
-        setSnackBarContent("Error in getting data");
-        showSnackBar(true);
-      } finally {
         setLoading(false);
+        console.log(err);
       }
     })();
-  }, [showSnackBar, setSnackBarContent, dispatch]);
+  }, [dispatch]);
 
   return (
     <div className="App">
