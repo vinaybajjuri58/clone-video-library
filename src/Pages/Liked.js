@@ -1,10 +1,8 @@
 import { useData } from "../Context";
 import { Video } from "../Components";
-import { useEffect } from "react";
+import { useDocumentTitle } from "../customHooks";
 export const Liked = () => {
-  useEffect(() => {
-    document.title = "Liked | Learn Finance";
-  }, []);
+  useDocumentTitle("Liked | Learn Finance");
   const { state } = useData();
   if (state.liked.length > 0) {
     return (
@@ -12,7 +10,7 @@ export const Liked = () => {
         <h2>Liked Videos</h2>
         <ul className="video-list">
           {state.liked.map((item) => (
-            <Video key={item.id} video={item} />
+            <Video key={item.videoId} video={item} />
           ))}
         </ul>
       </div>

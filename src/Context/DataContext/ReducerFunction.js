@@ -1,6 +1,11 @@
 import * as ActionTypes from "./ActionTypes";
 export const ReducerFunction = (state, action) => {
   switch (action.type) {
+    case ActionTypes.SET_VIDEOS:
+      return {
+        ...state,
+        videos: action.payload.videos,
+      };
     case ActionTypes.ADD_TO_PLAYLIST:
       return {
         ...state,
@@ -95,27 +100,27 @@ function addToPlaylist({ playlists, playlistId, videoId }) {
 }
 
 function removeFromHistory({ history, videoId }) {
-  return history.filter((item) => item.id !== videoId);
+  return history.filter((item) => item.videoId !== videoId);
 }
 
 function addToHistory({ history, newVideo }) {
-  const inHistory = history.find((item) => item.id === newVideo.id);
+  const inHistory = history.find((item) => item.videoId === newVideo.videoId);
   if (inHistory === undefined) {
     return [...history, newVideo];
   }
   return history;
 }
 function addtoLiked({ liked, newVideo }) {
-  const inLiked = liked.find((item) => item.id === newVideo.id);
+  const inLiked = liked.find((item) => item.videoId === newVideo.videoId);
   if (inLiked === undefined) {
     return [...liked, newVideo];
   }
   return liked;
 }
 function removeFromLiked({ liked, videoToRemove }) {
-  const inLiked = liked.find((item) => item.id === videoToRemove.id);
+  const inLiked = liked.find((item) => item.videoId === videoToRemove.videoId);
   if (inLiked === undefined) {
     return liked;
   }
-  return liked.filter((item) => item.id !== videoToRemove.id);
+  return liked.filter((item) => item.videoId !== videoToRemove.videoId);
 }

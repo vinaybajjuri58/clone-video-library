@@ -8,7 +8,7 @@ export const PlayListVideos = () => {
   } = useData();
   const playlist = playlists.find((item) => item.id === parseInt(playlistId));
   const getVideoObject = (videoId) => {
-    return videos.find((item) => item.id === videoId);
+    return videos.find((item) => item.videoId === videoId);
   };
   return (
     <div>
@@ -16,7 +16,7 @@ export const PlayListVideos = () => {
       {playlist.videos.length > 0 ? (
         <ul className="video-list">
           {playlist.videos.map((item) => (
-            <Video key={item.id} video={getVideoObject(item)} />
+            <Video key={item.videoId} video={getVideoObject(item)} />
           ))}
         </ul>
       ) : (

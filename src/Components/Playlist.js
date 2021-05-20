@@ -8,7 +8,7 @@ export const Playlist = ({ playlist }) => {
     state: { videos },
   } = useData();
   const getVideoImage = (videoId) => {
-    const video = videos.find((item) => item.id === videoId);
+    const video = videos.find((item) => item.videoId === videoId);
     return video.imageUrl;
   };
   const playlistImage =

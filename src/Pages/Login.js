@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useData, useAuth, AuthActionTypes } from "../Context";
+import { useDocumentTitle } from "../customHooks";
 const initialLoginData = {
   email: "",
   password: "",
@@ -11,6 +12,7 @@ export const Login = () => {
   const [loginData, setLoginData] = useState(initialLoginData);
   const { state } = useLocation();
   const navigate = useNavigate();
+  useDocumentTitle("Login | Learn Finance");
   useEffect(() => {
     if (authState.isLoggedIn) {
       navigate("/");

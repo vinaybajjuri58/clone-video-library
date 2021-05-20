@@ -144,6 +144,13 @@
   height: auto;
   width: 100%;
 }
+.card-image-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 247.5px;
+    background-color: black
+}
 /* Login page */
 .login-container {
   display: flex;

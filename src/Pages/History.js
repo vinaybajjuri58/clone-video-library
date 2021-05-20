@@ -1,11 +1,9 @@
 import { ActionTypes, useData } from "../Context";
 import { Video } from "../Components";
-import { useEffect } from "react";
+import { useDocumentTitle } from "../customHooks";
 export const History = () => {
   const { state, dispatch, showSnackBar, setSnackBarContent } = useData();
-  useEffect(() => {
-    document.title = "History | Learn Finance";
-  }, []);
+  useDocumentTitle("History | Learn Finance");
   const clearHistoryHandler = () => {
     setSnackBarContent(`Cleared History`);
     showSnackBar();
@@ -25,7 +23,7 @@ export const History = () => {
         </button>
         <ul className="video-list">
           {state.history.map((item) => (
-            <Video key={item.id} video={item} removeFromHistory />
+            <Video key={item.videoId} video={item} removeFromHistory />
           ))}
         </ul>
       </div>

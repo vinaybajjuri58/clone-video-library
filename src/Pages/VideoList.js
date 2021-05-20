@@ -1,14 +1,12 @@
 import { useData, ActionTypes, useAuth } from "../Context";
 import { Video } from "../Components";
-import { useEffect } from "react";
+import { useDocumentTitle } from "../customHooks";
 export const VideoList = () => {
   const { state, dispatch } = useData();
   const {
     authState: { isLoggedIn },
   } = useAuth();
-  useEffect(() => {
-    document.title = "Home | Learn Finance";
-  }, []);
+  useDocumentTitle("Home | Learn Finance");
   const videoClickHandler = (item) => {
     if (isLoggedIn) {
       dispatch({
@@ -21,7 +19,7 @@ export const VideoList = () => {
     <div>
       <ul className="video-list">
         {state.videos.map((item) => (
-          <div key={item.id} onClick={() => videoClickHandler(item)}>
+          <div key={item.videoId} onClick={() => videoClickHandler(item)}>
             <Video video={item} />
           </div>
         ))}

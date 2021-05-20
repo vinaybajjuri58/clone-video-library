@@ -4,6 +4,7 @@ import { VideoList } from "./VideoList";
 import { ActionTypes, useData, useAuth } from "../Context";
 import { YoutubeVideoDisplay, PlaylistModal } from "../Components";
 import { useEffect, useState } from "react";
+import { useDocumentTitle } from "../customHooks";
 export const Video = () => {
   return (
     <div>
@@ -20,10 +21,8 @@ const VideoDisplay = () => {
     authState: { isLoggedIn },
   } = useAuth();
   const [displayModal, setDisplayModal] = useState("none");
-  const video = state.videos.find((item) => item.id === videoId);
-  useEffect(() => {
-    document.title = video.description;
-  }, [video.description]);
+  const video = state.videos.find((item) => item.videoId === videoId);
+  useDocumentTitle(video.description);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,7 +51,7 @@ const VideoDisplay = () => {
   };
   const dislikeButtonHandler = () => {
     if (isLoggedIn) {
-      if (inLikedVideos({ id: video.id, likedVideos: state.liked })) {
+      if (inLikedVideos({ id: video.videoId, likedVideos: state.liked })) {
         setSnackBarContent(`Removed from Liked Videos`);
         showSnackBar();
         dispatch({
@@ -102,7 +101,7 @@ const VideoDisplay = () => {
             display: "flex",
           }}
         >
-          {inLikedVideos({ id: video.id, likedVideos: state.liked }) ? (
+          {inLikedVideos({ id: video.videoId, likedVideos: state.liked }) ? (
             <button
               className="icon-button button-style"
               onClick={removeFromLikedHandler}
@@ -137,7 +136,7 @@ const VideoDisplay = () => {
 };
 
 function inLikedVideos({ id, likedVideos }) {
-  const inliked = likedVideos.find((item) => item.id === id);
+  const inliked = likedVideos.find((item) => item.videoId === id);
   if (inliked === undefined) {
     return false;
   }

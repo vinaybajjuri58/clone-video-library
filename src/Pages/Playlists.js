@@ -1,10 +1,8 @@
 import { useData } from "../Context";
-import { useEffect } from "react";
 import { Playlist } from "../Components";
+import { useDocumentTitle } from "../customHooks";
 export const Playlists = () => {
-  useEffect(() => {
-    document.title = "Playlists | Learn Finance";
-  }, []);
+  useDocumentTitle("Playlists | Learn Finance");
   const {
     state: { playlists },
   } = useData();
