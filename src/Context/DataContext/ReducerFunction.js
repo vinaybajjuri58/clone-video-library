@@ -4,7 +4,7 @@ export const ReducerFunction = (state, action) => {
     case ActionTypes.SET_VIDEOS:
       return {
         ...state,
-        videos: action.payload.videos,
+        videos: action.payload,
       };
     case ActionTypes.ADD_TO_PLAYLIST:
       return {
