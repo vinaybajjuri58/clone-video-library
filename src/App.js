@@ -30,7 +30,7 @@ function App() {
         setLoading(false);
       }
     })();
-  }, []);
+  }, [showSnackBar, setSnackBarContent, dispatch]);
 
   return (
     <div className="App">
