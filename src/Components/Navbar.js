@@ -4,6 +4,7 @@ import { useAuth, AuthActionTypes } from "../Context";
 export const Navbar = () => {
   const { authState, authDispatch } = useAuth();
   const logoutHandler = () => {
+    localStorage?.removeItem("login");
     authDispatch({
       type: AuthActionTypes.SET_LOGOUT,
     });

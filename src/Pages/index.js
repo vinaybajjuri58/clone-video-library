@@ -6,3 +6,4 @@ export { Video } from "./VideoPage";
 export { PlayListVideos } from "./PlayListVideos";
 export { NotFound } from "./NotFound";
 export { Login } from "./Login";
+export { Signup } from "./Signup";

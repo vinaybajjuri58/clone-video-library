@@ -1,6 +1,13 @@
 import * as ActionTypes from "./ActionTypes";
 export const ReducerFunction = (state, action) => {
   switch (action.type) {
+    case ActionTypes.LOAD_USER_DATA:
+      return {
+        ...state,
+        playlists: action.payload.playlists,
+        liked: action.payload.liked,
+        history: action.payload.history,
+      };
     case ActionTypes.SET_VIDEOS:
       return {
         ...state,

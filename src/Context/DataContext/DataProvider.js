@@ -1,22 +1,10 @@
 import { useContext, useReducer, useState } from "react";
 import { DataContext } from "./DataContext";
 import { ReducerFunction } from "./ReducerFunction";
-// import { data } from "./Data";
 export const initialState = {
   videos: [],
   categories: [],
-  playlists: [
-    {
-      id: 123,
-      name: "Watch Later",
-      videos: ["8egWflM1xok"],
-    },
-    {
-      id: 124,
-      name: "Wealth creation",
-      videos: [],
-    },
-  ],
+  playlists: [],
   liked: [],
   history: [],
 };
@@ -50,3 +38,14 @@ export const DataProvider = ({ children }) => {
 export const useData = () => {
   return useContext(DataContext);
 };
+
+// {
+//   id: 123,
+//   name: "Watch Later",
+//   videos: ["8egWflM1xok"],
+// },
+// {
+//   id: 124,
+//   name: "Wealth creation",
+//   videos: [],
+// }

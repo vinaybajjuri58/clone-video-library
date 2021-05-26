@@ -8,6 +8,7 @@ import {
   Video,
   PlayListVideos,
   NotFound,
+  Signup,
   Login,
 } from "./Pages";
 export const RoutesComponent = () => {
@@ -20,6 +21,7 @@ export const RoutesComponent = () => {
       <Route path="/video/:videoId" element={<Video />} />
       <PrivateRoute path="/playlist/:playlistId" element={<PlayListVideos />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

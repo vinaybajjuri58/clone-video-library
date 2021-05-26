@@ -8,3 +8,4 @@ export const REMOVE_FROM_HISTORY = "REMOVE_FROM_HISTORY";
 export const ADD_TO_LIKED = "ADD_TO_LIKED";
 export const REMOVE_FROM_LIKED = "REMOVE_FROM_LIKED";
 export const SET_VIDEOS = "SET_VIDEOS";
+export const LOAD_USER_DATA = "LOAD_USER_DATA";

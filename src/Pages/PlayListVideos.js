@@ -6,9 +6,9 @@ export const PlayListVideos = () => {
   const {
     state: { playlists, videos },
   } = useData();
-  const playlist = playlists.find((item) => item.id === parseInt(playlistId));
+  const playlist = playlists.find((item) => item.id === playlistId);
   const getVideoObject = (videoId) => {
-    return videos.find((item) => item.videoId === videoId);
+    return videos.find((item) => item.id === videoId);
   };
   return (
     <div>
