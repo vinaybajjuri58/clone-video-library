@@ -8,7 +8,6 @@ export const Playlist = ({ playlist }) => {
     state: { videos },
   } = useData();
   const getVideoImage = (videoId) => {
-    console.log(videos);
     const video = videos.find((item) => item.id === videoId);
     return video.imageUrl;
   };

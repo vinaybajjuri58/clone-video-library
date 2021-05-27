@@ -36,7 +36,11 @@ export const ReducerFunction = (state, action) => {
         ...state,
         playlists: [
           ...state.playlists,
-          { id: state.playlists.length + 1, name: action.payload, videos: [] },
+          {
+            id: action.payload.id,
+            name: action.payload.playlistName,
+            videos: [],
+          },
         ],
       };
     case ActionTypes.DELETE_PLAYLIST:
