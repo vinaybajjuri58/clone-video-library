@@ -85,7 +85,7 @@ const VideoDisplay = () => {
   return (
     <div>
       <div className="iframe-container">
-        <YoutubeVideoDisplay youtubeId={videoId} />
+        <YoutubeVideoDisplay youtubeId={video.videoId} />
       </div>
       <PlaylistModal
         displayState={displayModal}
