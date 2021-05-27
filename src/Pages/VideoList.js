@@ -1,18 +1,22 @@
 import { useData, ActionTypes, useAuth } from "../Context";
 import { Video } from "../Components";
 import { useDocumentTitle } from "../customHooks";
+import { addToHistory } from "./serverCalls";
 export const VideoList = () => {
   const { state, dispatch } = useData();
   const {
-    authState: { isLoggedIn },
+    authState: { isLoggedIn, userToken },
   } = useAuth();
   useDocumentTitle("Home | Learn Finance");
-  const videoClickHandler = (item) => {
+  const videoClickHandler = async (item) => {
     if (isLoggedIn) {
-      dispatch({
-        type: ActionTypes.ADD_TO_HISTORY,
-        payload: item,
-      });
+      const data = await addToHistory({ videoId: item.id, token: userToken });
+      if (data.success === true) {
+        dispatch({
+          type: ActionTypes.ADD_TO_HISTORY,
+          payload: item,
+        });
+      }
     }
   };
   return (

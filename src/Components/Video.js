@@ -1,14 +1,30 @@
-import { ActionTypes, useData } from "../Context";
+import { ActionTypes, useData, useAuth } from "../Context";
 import { Link } from "react-router-dom";
+import { removeFromLiked } from "./serverCalls";
+
 export const Video = ({ video, removeFromHistory }) => {
   const { dispatch, showSnackBar, setSnackBarContent } = useData();
-  const removeFromHistoryHandler = (id) => {
-    setSnackBarContent(`Video Removed from History`);
-    showSnackBar();
-    dispatch({
-      type: ActionTypes.REMOVE_FROM_HISTORY,
-      payload: id,
-    });
+  const {
+    authState: { isLoggedIn, userToken },
+  } = useAuth();
+  const removeFromHistoryHandler = async (video) => {
+    if (isLoggedIn) {
+      const data = await removeFromLiked({
+        videoId: video.id,
+        token: userToken,
+      });
+      if (data.success === true) {
+        setSnackBarContent(`Video Removed from History`);
+        showSnackBar();
+        dispatch({
+          type: ActionTypes.REMOVE_FROM_HISTORY,
+          payload: video.videoId,
+        });
+      } else {
+        setSnackBarContent(`Error in removing video from history`);
+        showSnackBar();
+      }
+    }
   };
   return (
     <div id={video.videoId} className="card card-style">
@@ -34,7 +50,7 @@ export const Video = ({ video, removeFromHistory }) => {
           <button
             className="icon-button card-remove button-style"
             onClick={() => {
-              removeFromHistoryHandler(video.videoId);
+              removeFromHistoryHandler(video);
             }}
           >
             <i className="fas fa-trash"></i>
