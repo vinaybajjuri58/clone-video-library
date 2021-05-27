@@ -18,11 +18,12 @@ export const VideoList = () => {
   return (
     <div>
       <ul className="video-list">
-        {state.videos.map((item) => (
-          <div key={item.videoId} onClick={() => videoClickHandler(item)}>
-            <Video video={item} />
-          </div>
-        ))}
+        {state.videos.length > 0 &&
+          state.videos.map((item) => (
+            <div key={item.videoId} onClick={() => videoClickHandler(item)}>
+              <Video video={item} />
+            </div>
+          ))}
       </ul>
     </div>
   );

@@ -5,6 +5,7 @@ import { ActionTypes, useData, useAuth } from "../Context";
 import { YoutubeVideoDisplay, PlaylistModal } from "../Components";
 import { useEffect, useState } from "react";
 import { useDocumentTitle } from "../customHooks";
+import { likeVideo, removeFromLiked } from "./serverCalls";
 export const Video = () => {
   return (
     <div>
@@ -18,10 +19,10 @@ const VideoDisplay = () => {
   const { videoId } = useParams();
   const { state, dispatch, showSnackBar, setSnackBarContent } = useData();
   const {
-    authState: { isLoggedIn },
+    authState: { isLoggedIn, userToken },
   } = useAuth();
   const [displayModal, setDisplayModal] = useState("none");
-  const video = state.videos.find((item) => item.videoId === videoId);
+  const video = state.videos.find((item) => item.id === videoId);
   useDocumentTitle(video.description);
 
   useEffect(() => {
@@ -36,8 +37,9 @@ const VideoDisplay = () => {
       payload: video,
     });
   };
-  const addToLikedHandler = () => {
-    if (isLoggedIn) {
+  const addToLikedHandler = async () => {
+    const data = await likeVideo({ videoId: video.id, token: userToken });
+    if (data.success === true) {
       setSnackBarContent(`Added to Liked Videos`);
       showSnackBar();
       dispatch({
@@ -45,19 +47,23 @@ const VideoDisplay = () => {
         payload: video,
       });
     } else {
-      setSnackBarContent("Please Login");
+      setSnackBarContent("Error in adding to liked");
       showSnackBar();
     }
   };
-  const dislikeButtonHandler = () => {
+  const dislikeButtonHandler = async () => {
     if (isLoggedIn) {
-      if (inLikedVideos({ id: video.videoId, likedVideos: state.liked })) {
-        setSnackBarContent(`Removed from Liked Videos`);
-        showSnackBar();
-        dispatch({
-          type: ActionTypes.REMOVE_FROM_LIKED,
-          payload: video,
+      if (inLikedVideos({ id: video.id, likedVideos: state.liked })) {
+        const data = await removeFromLiked({
+          videoId: video.id,
+          token: userToken,
         });
+        if (data.success === true) {
+          removeFromLikedHandler();
+        } else {
+          setSnackBarContent("Error in removing from liked");
+          showSnackBar();
+        }
       } else {
         setSnackBarContent("Video is not present in liked videos");
         showSnackBar();
@@ -101,10 +107,10 @@ const VideoDisplay = () => {
             display: "flex",
           }}
         >
-          {inLikedVideos({ id: video.videoId, likedVideos: state.liked }) ? (
+          {inLikedVideos({ id: video.id, likedVideos: state.liked }) ? (
             <button
               className="icon-button button-style"
-              onClick={removeFromLikedHandler}
+              onClick={dislikeButtonHandler}
             >
               <i class="fas fa-thumbs-up"></i>
             </button>
@@ -136,7 +142,7 @@ const VideoDisplay = () => {
 };
 
 function inLikedVideos({ id, likedVideos }) {
-  const inliked = likedVideos.find((item) => item.videoId === id);
+  const inliked = likedVideos.find((item) => item.id === id);
   if (inliked === undefined) {
     return false;
   }

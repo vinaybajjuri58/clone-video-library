@@ -12,7 +12,7 @@ export const Video = ({ video, removeFromHistory }) => {
   };
   return (
     <div id={video.videoId} className="card card-style">
-      <Link to={`/video/${video.videoId}`}>
+      <Link to={`/video/${video.id}`}>
         <div className="card-image-container">
           <img
             className="card-img card-img-style"

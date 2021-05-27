@@ -36,3 +36,42 @@ export const signUpUser = async ({ email, name, password }) => {
   }
   return response.data;
 };
+export const likeVideo = async ({ videoId, token }) => {
+  let response = {};
+  try {
+    response = await axios.post(
+      "https://learn-finance-backend.herokuapp.com/api/videos/liked",
+      {
+        videoId: videoId,
+      },
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+  } catch (err) {
+    response.data = {
+      success: false,
+      message: "Error in adding video to liked videos",
+    };
+  }
+  return response.data;
+};
+export const removeFromLiked = async ({ videoId, token }) => {
+  let response = {};
+  try {
+    response = await axios({
+      url: "https://learn-finance-backend.herokuapp.com/api/videos/liked",
+      method: "delete",
+      data: { videoId },
+      headers: { authorization: token },
+    });
+  } catch (err) {
+    response.data = {
+      success: false,
+      message: "Error in adding video to liked videos",
+    };
+  }
+  return response.data;
+};
