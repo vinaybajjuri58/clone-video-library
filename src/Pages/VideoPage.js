@@ -27,17 +27,16 @@ export const Video = () => {
           );
           if (success === true) {
             videoRef.current = responseVideo;
-            console.log(responseVideo);
           }
         } catch (err) {
           console.log(err);
         }
       })();
     }
-  }, []);
+  }, [videoId, video]);
   return (
     <div>
-      <VideoDisplay video={video} />
+      {video && <VideoDisplay video={video} />}
       <VideoList />
     </div>
   );
@@ -110,71 +109,63 @@ const VideoDisplay = ({ video }) => {
     }
   };
 
-  if (video === undefined) {
-    return (
-      <div>
-        <h3>Loading</h3>
+  return (
+    <div>
+      <div className="iframe-container">
+        <YoutubeVideoDisplay youtubeId={video.videoId} />
       </div>
-    );
-  } else {
-    return (
+      <PlaylistModal
+        displayState={displayModal}
+        setDisplayState={setDisplayModal}
+      />
       <div>
-        <div className="iframe-container">
-          <YoutubeVideoDisplay youtubeId={video.videoId} />
-        </div>
-        <PlaylistModal
-          displayState={displayModal}
-          setDisplayState={setDisplayModal}
-        />
-        <div>
-          <div style={{ display: "flex" }}>
-            <div className="avatar-container-sm avatar-padding">
-              <img
-                className="avatar avatar-padding"
-                src={video.avatarSrc}
-                alt={video.uploadedBy}
-              />
-            </div>
-            <p>{video.description}</p>
+        <div style={{ display: "flex" }}>
+          <div className="avatar-container-sm avatar-padding">
+            <img
+              className="avatar avatar-padding"
+              src={video.avatarSrc}
+              alt={video.uploadedBy}
+            />
           </div>
-          <div
-            style={{
-              display: "flex",
-            }}
-          >
-            {inLikedVideos({ id: video.id, likedVideos: state.liked }) ? (
-              <button
-                className="icon-button button-style"
-                onClick={dislikeButtonHandler}
-              >
-                <i class="fas fa-thumbs-up"></i>
-              </button>
-            ) : (
-              <button
-                className="icon-button button-style"
-                onClick={addToLikedHandler}
-              >
-                <i class="far fa-thumbs-up"> </i>
-              </button>
-            )}
-
+          <p>{video.description}</p>
+        </div>
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          {inLikedVideos({ id: video.id, likedVideos: state.liked }) ? (
             <button
               className="icon-button button-style"
               onClick={dislikeButtonHandler}
             >
-              <i class="far fa-thumbs-down"></i>
+              <i class="fas fa-thumbs-up"></i>
             </button>
+          ) : (
             <button
               className="icon-button button-style"
-              onClick={playlistButtonHandler}
+              onClick={addToLikedHandler}
             >
-              <i class="fas fa-bars"></i> ADD TO PLAYLIST
+              <i class="far fa-thumbs-up"> </i>
             </button>
-          </div>
+          )}
+
+          <button
+            className="icon-button button-style"
+            onClick={dislikeButtonHandler}
+          >
+            <i class="far fa-thumbs-down"></i>
+          </button>
+          <button
+            className="icon-button button-style"
+            onClick={playlistButtonHandler}
+          >
+            <i class="fas fa-bars"></i> ADD TO PLAYLIST
+          </button>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 function inLikedVideos({ id, likedVideos }) {
