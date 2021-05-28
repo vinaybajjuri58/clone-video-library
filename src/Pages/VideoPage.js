@@ -34,12 +34,20 @@ export const Video = () => {
       })();
     }
   }, [videoId, video]);
-  return (
-    <div>
-      {video && <VideoDisplay video={video} />}
-      <VideoList />
-    </div>
-  );
+  if (video !== undefined) {
+    return (
+      <div>
+        <VideoDisplay video={video} />
+        <VideoList />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <p>Loading ...</p>
+      </div>
+    );
+  }
 };
 
 const VideoDisplay = ({ video }) => {
