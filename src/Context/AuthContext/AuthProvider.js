@@ -20,11 +20,3 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
   return useContext(AuthContext);
 };
-
-// function setupAuthHeaderForServiceCalls(token) {
-//   if (authState.token) {
-//     return (axios.defaults.headers.common["Authorization"] = token);
-//   }
-//   delete axios.defaults.headers.common["Authorization"];
-// }
-// setupAuthHeaderForServiceCalls();

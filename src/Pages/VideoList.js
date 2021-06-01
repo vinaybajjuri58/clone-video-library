@@ -10,12 +10,14 @@ export const VideoList = () => {
   useDocumentTitle("Home | Learn Finance");
   const videoClickHandler = async (item) => {
     if (isLoggedIn) {
-      const data = await addToHistory({ videoId: item.id, token: userToken });
-      if (data.success === true) {
-        dispatch({
-          type: ActionTypes.ADD_TO_HISTORY,
-          payload: item,
-        });
+      if (!checkIfInHistory({ videoId: item.id, history: state.history })) {
+        const data = await addToHistory({ videoId: item.id, token: userToken });
+        if (data.success === true) {
+          dispatch({
+            type: ActionTypes.ADD_TO_HISTORY,
+            payload: item,
+          });
+        }
       }
     }
   };
@@ -31,4 +33,12 @@ export const VideoList = () => {
       </ul>
     </div>
   );
+};
+
+const checkIfInHistory = ({ videoId, history }) => {
+  const inHistory = history.find((video) => video.id === videoId);
+  if (inHistory === undefined) {
+    return false;
+  }
+  return true;
 };
