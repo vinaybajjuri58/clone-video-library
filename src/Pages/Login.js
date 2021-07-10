@@ -38,9 +38,14 @@ export const Login = () => {
           token: data.token,
         },
       });
+      const loginTime = new Date().getTime();
       localStorage?.setItem(
         "login",
-        JSON.stringify({ isLoggedIn: true, userToken: data.token })
+        JSON.stringify({
+          isLoggedIn: true,
+          userToken: data.token,
+          expiry: loginTime + 64800000,
+        })
       );
       setLoginData(initialLoginData);
       navigate(state?.from ? state.from : "/");
@@ -73,13 +78,16 @@ export const Login = () => {
       </label>
       <div>
         <button
-          className="button button-border border-primary button-style-margin"
+          className="button button-border border-primary button-style-margin auth-buttons"
           onClick={handleSubmit}
         >
           Login
         </button>
       </div>
-      <Link className="button button-border border-primary" to="/signup">
+      <Link
+        className="button button-border border-primary auth-buttons"
+        to="/signup"
+      >
         signup
       </Link>
     </div>

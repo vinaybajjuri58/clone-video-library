@@ -91,6 +91,7 @@
 .button-style {
   color: inherit;
   background-color: inherit;
+  padding: 0.5rem;
 }
 .modal-theme {
   color: var(--font-color);
@@ -163,13 +164,24 @@
 }
 .label-styles {
   align-self: center;
-  size: 1.2rem;
+  size: 2rem;
 }
 .input-field {
-  width: 100%;
-  height: 1.125rem;
-  border: 1px solid whitesmoke;
-  background-color: whitesmoke;
+  width: 15rem;
+  height: 5 rem;
+  border: 1px solid black;
+  background-color: white;
+  color: white;
+  padding: 0.5rem;
+}
+.input-field:focus{
+  border-bottom: "2px solid white";
+}
+
+.auth-buttons{
+  list-style: none;
+  padding: 0.5rem 1rem ;
+  size:2rem ;
 }
 
 @media only screen and (max-width: 600px) {

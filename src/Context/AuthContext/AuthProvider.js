@@ -1,11 +1,27 @@
 import { useContext, useReducer } from "react";
 import { AuthContext } from "./AuthContext";
 import { reducerFunction } from "./ReducerFunction";
-const initialAuthData = JSON.parse(localStorage?.getItem("login")) || {
-  isLoggedIn: false,
-  userToken: null,
-};
+
+function getWithExpiry() {
+  const initialAuthData = {
+    isLoggedIn: false,
+    userToken: null,
+  };
+  const itemStr = localStorage?.getItem("login");
+  if (!itemStr) {
+    return initialAuthData;
+  }
+  const item = JSON.parse(itemStr);
+  const now = new Date();
+  if (now.getTime() > item.expiry) {
+    localStorage.removeItem("login");
+    return initialAuthData;
+  }
+  return item;
+}
+
 export const AuthProvider = ({ children }) => {
+  const initialAuthData = getWithExpiry();
   const [authState, authDispatch] = useReducer(
     reducerFunction,
     initialAuthData

@@ -6,9 +6,8 @@ export const LoadingComponent = (props) => {
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
       {videoArray.map((video) => (
-        <div style={{ width: "330 px", height: "340 px" }}>
+        <div key={video} style={{ width: "330 px", height: "340 px" }}>
           <ContentLoader
-            key={video}
             viewBox="0 0 340 330"
             height={340}
             width={330}

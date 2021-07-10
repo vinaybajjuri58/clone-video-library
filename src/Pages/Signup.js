@@ -75,7 +75,7 @@ export const Signup = () => {
       </label>
       <div>
         <button
-          className="button button-border border-primary button-style-margin"
+          className="button button-border border-primary button-style-margin auth-buttons"
           onClick={handleSubmit}
         >
           Signup
