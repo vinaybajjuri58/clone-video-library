@@ -1,6 +1,6 @@
 import "./App.css";
 import { RoutesComponent } from "./Routes";
-import { Sidebar, SnackBar } from "./Components";
+import { Sidebar, SnackBar, LoadingComponent } from "./Components";
 import { useData, ActionTypes, useAuth } from "./Context";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -64,7 +64,7 @@ function App() {
   return (
     <div className="App">
       <Sidebar />
-      {loading ? <p>Loading</p> : <RoutesComponent />}
+      {loading ? <LoadingComponent /> : <RoutesComponent />}
       {displaySnackBar && <SnackBar />}
     </div>
   );

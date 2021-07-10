@@ -5,3 +5,4 @@ export { PlaylistModal } from "./PlaylistModal";
 export { SnackBar } from "./SnackBar";
 export { Playlist } from "./Playlist";
 export { Navbar } from "./Navbar";
+export { LoadingComponent } from "./LoadingComponent";
