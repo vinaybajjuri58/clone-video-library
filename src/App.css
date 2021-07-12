@@ -170,12 +170,13 @@
   width: 15rem;
   height: 5 rem;
   border: 1px solid black;
-  background-color: gainsboro;
+  background-color: white;
   color: black;
   padding: 0.5rem;
 }
 .input-field:focus{
   border-bottom: "2px solid white";
+  background-color: white;
 }
 
 .auth-buttons{
