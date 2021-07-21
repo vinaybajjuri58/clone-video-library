@@ -170,6 +170,18 @@ const VideoDisplay = ({ video }) => {
           >
             <i class="fas fa-bars"></i> ADD TO PLAYLIST
           </button>
+          <button
+            className="icon-button button-style"
+            onClick={() => {
+              navigator.clipboard.writeText(
+                `https://learn-finance.netlify.app/video/${video.id}`
+              );
+              setSnackBarContent(`Video link copied to clibboard`);
+              showSnackBar();
+            }}
+          >
+            <i class="fas fa-share"></i> SHARE
+          </button>
         </div>
       </div>
     </div>
