@@ -116,6 +116,13 @@ const VideoDisplay = ({ video }) => {
       showSnackBar();
     }
   };
+  const shareButtonHandler = () => {
+    navigator.clipboard.writeText(
+      `https://learn-finance.netlify.app/video/${video.id}`
+    );
+    setSnackBarContent(`Link copied to clipboard`);
+    showSnackBar();
+  };
 
   return (
     <div>
@@ -143,12 +150,20 @@ const VideoDisplay = ({ video }) => {
           }}
         >
           {inLikedVideos({ id: video.id, likedVideos: state.liked }) ? (
-            <button
-              className="icon-button button-style"
-              onClick={dislikeButtonHandler}
-            >
-              <i class="fas fa-thumbs-up"></i>
-            </button>
+            <div>
+              <button
+                className="icon-button button-style"
+                onClick={dislikeButtonHandler}
+              >
+                <i class="fas fa-thumbs-up"></i>
+              </button>
+              <button
+                className="icon-button button-style"
+                onClick={dislikeButtonHandler}
+              >
+                <i class="far fa-thumbs-down"></i>
+              </button>
+            </div>
           ) : (
             <button
               className="icon-button button-style"
@@ -157,13 +172,6 @@ const VideoDisplay = ({ video }) => {
               <i class="far fa-thumbs-up"> </i>
             </button>
           )}
-
-          <button
-            className="icon-button button-style"
-            onClick={dislikeButtonHandler}
-          >
-            <i class="far fa-thumbs-down"></i>
-          </button>
           <button
             className="icon-button button-style"
             onClick={playlistButtonHandler}
@@ -172,13 +180,7 @@ const VideoDisplay = ({ video }) => {
           </button>
           <button
             className="icon-button button-style"
-            onClick={() => {
-              navigator.clipboard.writeText(
-                `https://learn-finance.netlify.app/video/${video.id}`
-              );
-              setSnackBarContent(`Video link copied to clibboard`);
-              showSnackBar();
-            }}
+            onClick={shareButtonHandler}
           >
             <i class="fas fa-share"></i> SHARE
           </button>
