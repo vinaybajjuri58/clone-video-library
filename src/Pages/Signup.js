@@ -3,15 +3,27 @@ import { useNavigate } from "react-router-dom";
 import { useData, useAuth } from "../Context";
 import { useDocumentTitle } from "../customHooks";
 import { signUpUser } from "./serverCalls";
-const initialSignupData = {
-  email: "",
-  name: "",
-  password: "",
-};
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+  name: yup.string().required().min(4),
+  email: yup.string().email().required(),
+  password: yup.string().required().min(6),
+});
+
 export const Signup = () => {
   const { authState } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   const { showSnackBar, setSnackBarContent } = useData();
-  const [signupData, setSignUpData] = useState(initialSignupData);
+  const [signUpLoading, setSignUpLoading] = useState(false);
   const navigate = useNavigate();
   useDocumentTitle("Signup | Learn Finance");
   useEffect(() => {
@@ -19,22 +31,18 @@ export const Signup = () => {
       navigate("/");
     }
   }, [authState.isLoggedIn, navigate]);
-  const handleChange = (e) => {
-    setSignUpData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
-  const handleSubmit = async () => {
-    const data = await signUpUser({
-      email: signupData.email,
-      name: signupData.name,
-      password: signupData.password,
+
+  const signUpHandler = async (data) => {
+    setSignUpLoading(true);
+    const response = await signUpUser({
+      email: data.email,
+      name: data.name,
+      password: data.password,
     });
-    if (data.success === true) {
+    setSignUpLoading(false);
+    if (response.success === true) {
       setSnackBarContent("User registered successfully");
       showSnackBar();
-      setSignUpData(initialSignupData);
       navigate("/login");
     } else {
       setSnackBarContent("Signup failed");
@@ -43,44 +51,46 @@ export const Signup = () => {
   };
   return (
     <div className="login-container">
-      <label>
-        <p className="label-styles">Name :</p>
+      <form onSubmit={handleSubmit(signUpHandler)}>
+        <label>
+          <p className="label-styles">Name :</p>{" "}
+        </label>
         <input
           className="input-field"
           type="text"
-          value={signupData["name"]}
           name="name"
-          onChange={handleChange}
+          {...register("name")}
         />
-      </label>
-      <label>
-        <p className="label-styles">Email :</p>
+        <p className="error-text">{errors.name?.message}</p>
+        <label>
+          <p className="label-styles">Email :</p>{" "}
+        </label>
         <input
           className="input-field"
           type="text"
-          value={signupData["email"]}
           name="email"
-          onChange={handleChange}
+          {...register("email")}
         />
-      </label>
-      <label>
-        <p className="label-styles">Password :</p>
+        <p className="error-text">{errors.email?.message}</p>
+        <label>
+          <p className="label-styles">Password :</p>{" "}
+        </label>
         <input
           className="input-field"
           type="password"
-          value={signupData["password"]}
           name="password"
-          onChange={handleChange}
+          {...register("password")}
         />
-      </label>
-      <div>
-        <button
-          className="button button-border border-primary button-style-margin auth-buttons"
-          onClick={handleSubmit}
-        >
-          Signup
-        </button>
-      </div>
+        <p className="error-text">{errors.password?.message}</p>
+        <div>
+          <button
+            className="button button-border border-primary button-style-margin auth-buttons"
+            type="submit"
+          >
+            {signUpLoading ? "Signing Up" : "Signup"}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

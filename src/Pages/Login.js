@@ -4,38 +4,47 @@ import { useData, useAuth, AuthActionTypes } from "../Context";
 import { Link } from "react-router-dom";
 import { useDocumentTitle } from "../customHooks";
 import { loginUser } from "./serverCalls";
-const initialLoginData = {
-  email: "",
-  password: "",
-};
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().required().min(6),
+});
+
 export const Login = () => {
   const { authState, authDispatch } = useAuth();
+  const [loginLoading, setLoginLoading] = useState(false);
   const { showSnackBar, setSnackBarContent } = useData();
-  const [loginData, setLoginData] = useState(initialLoginData);
   const { state } = useLocation();
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   useDocumentTitle("Login | Learn Finance");
   useEffect(() => {
     if (authState.isLoggedIn) {
       navigate("/");
     }
   }, [authState.isLoggedIn, navigate]);
-  const handleChange = (e) => {
-    setLoginData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
-  const handleSubmit = async () => {
-    const data = await loginUser({
-      email: loginData.email,
-      password: loginData.password,
+
+  const loginHandler = async (data) => {
+    setLoginLoading(true);
+    const response = await loginUser({
+      email: data.email,
+      password: data.password,
     });
-    if (data.success === true) {
+    setLoginLoading(false);
+    if (response.success === true) {
       authDispatch({
         type: AuthActionTypes.SET_LOGGED_IN,
         payload: {
-          token: data.token,
+          token: response.token,
         },
       });
       const loginTime = new Date().getTime();
@@ -43,11 +52,10 @@ export const Login = () => {
         "login",
         JSON.stringify({
           isLoggedIn: true,
-          userToken: data.token,
+          userToken: response.token,
           expiry: loginTime + 64800000,
         })
       );
-      setLoginData(initialLoginData);
       navigate(state?.from ? state.from : "/");
     } else {
       setSnackBarContent("Login Failed");
@@ -56,40 +64,43 @@ export const Login = () => {
   };
   return (
     <div className="login-container">
-      <label>
-        <p className="label-styles">Email :</p>
+      <form onSubmit={handleSubmit(loginHandler)}>
+        <label>
+          <p className="label-styles">Email :</p>
+        </label>
         <input
           className="input-field"
           type="text"
-          value={loginData["email"]}
           name="email"
-          onChange={handleChange}
+          {...register("email")}
         />
-      </label>
-      <label>
-        <p className="label-styles">Password :</p>
+        <p className="error-text">{errors.email?.message}</p>
+        <label>
+          <p className="label-styles">Password :</p>
+        </label>
         <input
           className="input-field"
           type="password"
-          value={loginData["password"]}
           name="password"
-          onChange={handleChange}
+          {...register("password")}
         />
-      </label>
-      <div>
-        <button
-          className="button button-border border-primary button-style-margin auth-buttons"
-          onClick={handleSubmit}
-        >
-          Login
-        </button>
-      </div>
-      <Link
-        className="button button-border border-primary auth-buttons"
-        to="/signup"
-      >
-        signup
-      </Link>
+        <p className="error-text">{errors.password?.message}</p>
+        <div className="buttons-container">
+          <button
+            type="submit"
+            className="button button-border border-primary button-style-margin auth-buttons"
+          >
+            {loginLoading ? "Logging In ..." : "Login"}
+          </button>
+          <div>
+            <Link to="/signup">
+              <button className="button button-border border-primary auth-buttons">
+                SignUp
+              </button>
+            </Link>
+          </div>
+        </div>
+      </form>
     </div>
   );
 };
