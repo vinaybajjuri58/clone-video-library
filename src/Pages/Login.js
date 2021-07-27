@@ -25,6 +25,10 @@ export const Login = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      email: "tester@gmail.com",
+      password: "123456789",
+    },
   });
   useDocumentTitle("Login | Learn Finance");
   useEffect(() => {
