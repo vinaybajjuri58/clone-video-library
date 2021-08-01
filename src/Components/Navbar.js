@@ -33,11 +33,10 @@ export const Navbar = () => {
           </button>
         </div>
       ) : (
-        <Link
-          className="button button-border border-primary auth-buttons"
-          to="/login"
-        >
-          Login
+        <Link to="/login">
+          <button className="button button-border border-primary auth-buttons">
+            Login
+          </button>
         </Link>
       )}
     </div>
