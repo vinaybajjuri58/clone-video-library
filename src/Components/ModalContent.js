@@ -95,11 +95,11 @@ export const ModalContent = () => {
         </button>
       </div>
       <div>
-        <ul>
-          {playlists.length === 0 && <h2>No playlists Available</h2>}
+        {playlists.length === 0 && <h2>No playlists Available</h2>}
+        <ul className="playlists">
           {playlists.map((playlist) => (
-            <div key={playlist.id}>
-              <label className="display-flex">
+            <div key={playlist.id} className="single-playlist">
+              <label className="single-playlist">
                 <input
                   type="checkbox"
                   checked={checkIfInPlaylist({
@@ -116,13 +116,13 @@ export const ModalContent = () => {
                   }
                 />
                 <p>{playlist.name}</p>
-                <button
-                  className="icon-button button-style"
-                  onClick={() => playlistDeleteHandler({ playlist: playlist })}
-                >
-                  <i className="fas fa-trash"></i>
-                </button>
               </label>
+              <button
+                className="icon-button button-style"
+                onClick={() => playlistDeleteHandler({ playlist: playlist })}
+              >
+                <i className="fas fa-trash"></i>
+              </button>
             </div>
           ))}
         </ul>

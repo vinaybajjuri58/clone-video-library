@@ -125,7 +125,7 @@ const VideoDisplay = ({ video }) => {
   };
 
   return (
-    <div>
+    <div className="single-video-page">
       <div className="iframe-container">
         <YoutubeVideoDisplay youtubeId={video.videoId} />
       </div>
