@@ -196,13 +196,16 @@
   display: flex;
   flex-direction: column;
 }
-.single-playlist{
-  display: flex;
-  justify-content: space-between;
-}
 .single-video-page{
   padding: 0px;
   margin: 0px;
+}
+.single-playlist{
+  display: flex;
+  justify-content: space-evenly;
+}
+.playlist-checkbox{
+  display: flex;
 }
 
 @media only screen and (max-width: 600px) {

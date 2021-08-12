@@ -99,24 +99,26 @@ export const ModalContent = () => {
         <ul className="playlists">
           {playlists.map((playlist) => (
             <div key={playlist.id} className="single-playlist">
-              <label className="single-playlist">
-                <input
-                  type="checkbox"
-                  checked={checkIfInPlaylist({
-                    videoId: videoId,
-                    playlistVideos: playlist.videos,
-                  })}
-                  onChange={() =>
-                    playlistCheckBoxHandler({
+              <div>
+                <label className="playlist-checkbox">
+                  <input
+                    type="checkbox"
+                    checked={checkIfInPlaylist({
                       videoId: videoId,
                       playlistVideos: playlist.videos,
-                      playlistId: playlist.id,
-                      playlistName: playlist.name,
-                    })
-                  }
-                />
-                <p>{playlist.name}</p>
-              </label>
+                    })}
+                    onChange={() =>
+                      playlistCheckBoxHandler({
+                        videoId: videoId,
+                        playlistVideos: playlist.videos,
+                        playlistId: playlist.id,
+                        playlistName: playlist.name,
+                      })
+                    }
+                  />
+                  <p>{playlist.name}</p>
+                </label>
+              </div>
               <button
                 className="icon-button button-style"
                 onClick={() => playlistDeleteHandler({ playlist: playlist })}
