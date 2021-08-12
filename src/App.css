@@ -198,7 +198,7 @@
 }
 .single-playlist{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 .single-video-page{
   padding: 0px;
