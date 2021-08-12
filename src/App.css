@@ -202,10 +202,11 @@
 }
 .single-playlist{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 .playlist-checkbox{
   display: flex;
+  justify-content: space-around;
 }
 
 @media only screen and (max-width: 600px) {
