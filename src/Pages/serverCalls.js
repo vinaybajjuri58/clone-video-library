@@ -3,7 +3,7 @@ export const loginUser = async ({ email, password }) => {
   let response = {};
   try {
     response = await axios.post(
-      "https://learn-finance-backend.herokuapp.com/api/users/login",
+      "https://learn-finance-backend.onrender.com/api/users/login",
       {
         email,
         password,
@@ -22,7 +22,7 @@ export const signUpUser = async ({ email, name, password }) => {
   let response = {};
   try {
     response = await axios.post(
-      "https://learn-finance-backend.herokuapp.com/api/users/signup",
+      "https://learn-finance-backend.onrender.com/api/users/signup",
       {
         email,
         name,
@@ -42,7 +42,7 @@ export const likeVideo = async ({ videoId, token }) => {
   let response = {};
   try {
     response = await axios.post(
-      "https://learn-finance-backend.herokuapp.com/api/videos/liked",
+      "https://learn-finance-backend.onrender.com/api/videos/liked",
       {
         videoId: videoId,
       },
@@ -65,7 +65,7 @@ export const removeFromLiked = async ({ videoId, token }) => {
   let response = {};
   try {
     response = await axios({
-      url: "https://learn-finance-backend.herokuapp.com/api/videos/liked",
+      url: "https://learn-finance-backend.onrender.com/api/videos/liked",
       method: "delete",
       data: { videoId },
       headers: { authorization: token },
@@ -83,7 +83,7 @@ export const addToHistory = async ({ videoId, token }) => {
   let response = {};
   try {
     response = await axios.post(
-      "https://learn-finance-backend.herokuapp.com/api/videos/history",
+      "https://learn-finance-backend.onrender.com/api/videos/history",
       {
         videoId: videoId,
       },
