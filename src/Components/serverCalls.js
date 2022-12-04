@@ -3,7 +3,7 @@ export const removeFromLiked = async ({ videoId, token }) => {
   let response = {};
   try {
     response = await axios({
-      url: "https://learn-finance-backend.herokuapp.com/api/videos/history",
+      url: "https://learn-finance-backend.onrender.com/api/videos/history",
       method: "delete",
       data: { videoId },
       headers: { authorization: token },
@@ -21,7 +21,7 @@ export const createNewPlaylist = async ({ playlistName, token }) => {
   let response = {};
   try {
     response = await axios.post(
-      "https://learn-finance-backend.herokuapp.com/api/playlists",
+      "https://learn-finance-backend.onrender.com/api/playlists",
       {
         name: playlistName,
       },
@@ -44,7 +44,7 @@ export const removePlaylist = async ({ playlistId, token }) => {
   let response = {};
   try {
     response = await axios({
-      url: `https://learn-finance-backend.herokuapp.com/api/playlists/${playlistId}`,
+      url: `https://learn-finance-backend.onrender.com/api/playlists/${playlistId}`,
       method: "delete",
       headers: { authorization: token },
     });
@@ -62,7 +62,7 @@ export const addVideoToPlaylist = async ({ playlistId, videoId, token }) => {
   let response = {};
   try {
     response = await axios.post(
-      `https://learn-finance-backend.herokuapp.com/api/playlists/${playlistId}/videos`,
+      `https://learn-finance-backend.onrender.com/api/playlists/${playlistId}/videos`,
       {
         videoId,
       },
@@ -89,7 +89,7 @@ export const removeVideoFromPlaylist = async ({
   let response = {};
   try {
     response = await axios({
-      url: `https://learn-finance-backend.herokuapp.com/api/playlists/${playlistId}/videos/${videoId}`,
+      url: `https://learn-finance-backend.onrender.com/api/playlists/${playlistId}/videos/${videoId}`,
       method: "delete",
       headers: { authorization: token },
     });
