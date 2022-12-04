@@ -23,7 +23,7 @@ export const Video = () => {
           const {
             data: { success, video: responseVideo },
           } = await axios.get(
-            `https://learn-finance-backend.herokuapp.com/api/videos/${videoId}`
+            `https://learn-finance-backend.onrender.com/api/videos/${videoId}`
           );
           if (success === true) {
             videoRef.current = responseVideo;
