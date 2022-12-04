@@ -15,7 +15,7 @@ function App() {
         const {
           data: { success, videos },
         } = await axios.get(
-          `https://learn-finance-backend.herokuapp.com/api/videos`
+          `https://learn-finance-backend.onrender.com/api/videos`
         );
         setLoading(false);
         if (success === true) {
@@ -37,7 +37,7 @@ function App() {
           const {
             data: { success, user },
           } = await axios.get(
-            `https://learn-finance-backend.herokuapp.com/api/users/userdata`,
+            `https://learn-finance-backend.onrender.com/api/users/userdata`,
             {
               headers: {
                 authorization: authState.userToken,
